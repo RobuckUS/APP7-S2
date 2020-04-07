@@ -1,7 +1,22 @@
-TEMPLATE     = vcapp
-TARGET       = ConnectFour
-CONFIG      += warn_on qt debug_and_release windows console
-HEADERS     += accueil.h mainWindow.h parametre.h parametrejeu.h
-SOURCES     += accueil.cpp parametre.cpp MainWindow.cpp parametrejeu.cpp main.cpp
-INCLUDEPATH += ../APP7-S2 ../APP7-S2/Ressources
+TARGET = ConnectFour
+TEMPLATE = vcapp
+
+CONFIG += warn_on qt debug_and_release windows console
+
+
+DEFINES += QT_DEPRECATED_WARNINGS
+
+HEADERS += \
+        src\accueil.h \
+        src\mainWindow.h \
+        src\parametre.h \
+        src\parametreJeu.h \
+
+SOURCES += \
+        src\main.cpp \
+        src\accueil.cpp \
+        src\mainWindow.cpp \
+        src\parametre.cpp \
+        src\parametreJeu.cpp \
+
 QT += widgets
