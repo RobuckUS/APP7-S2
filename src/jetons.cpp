@@ -14,14 +14,17 @@ Jetons::Jetons(int x, int y, int r, Player p) : QGraphicsEllipseItem(x, y, r, r)
 	}
 	else if (player.getPlayerType() == player1)
 	{
-		QPixmap image("res//MX-thumbnail-256.png");
-		setBrush(QBrush(image.scaled(rayon, rayon, Qt::IgnoreAspectRatio)));
-		setRect(QRectF(x, y, r, r));
+		QBrush brush;
+		brush.setTextureImage(QImage("res//MX-thumbnail-256.png").scaled(rayon, rayon));
+		setBrush(brush);
+
 	}
 	else if (player.getPlayerType() == player2)
 	{
-		QPixmap image("res//US-thumbnail-256.png");
-		setBrush(QBrush(image.scaled(rayon, rayon, Qt::IgnoreAspectRatio)));
+		QBrush brush;
+		brush.setTextureImage(QImage("res//US-thumbnail-256.png").scaled(rayon,rayon));
+		setBrush(brush);
+		
 	}
 }
 
