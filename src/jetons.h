@@ -21,4 +21,6 @@ private:
 	QPixmap icon;
 	Player player;
 	int rayon;
+	int xPos;
+	int yPos;
 };
