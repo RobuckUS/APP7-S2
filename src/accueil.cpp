@@ -1,15 +1,11 @@
 #include "accueil.h"
 Accueil::Accueil()
 {
-	setTitre();
 	setButtons();
 	setVLayout();
 	setWindow();
 }
-void Accueil::setTitre()
-{
-	titre = new QLabel("Connect Four");
-}
+
 void Accueil::setButtons()
 {
 	jouerBtn = new QPushButton("Jouer");
@@ -21,7 +17,7 @@ void Accueil::setButtons()
 void Accueil::setVLayout()
 {
 	vlayout = new QVBoxLayout();
-	vlayout->addWidget(titre, Qt::AlignVCenter, Qt::AlignAbsolute);
+	vlayout->addWidget(new QLabel(""));
 	vlayout->addWidget(jouerBtn);
 	vlayout->addWidget(tableauScoreBtn);
 	vlayout->addWidget(parametreBtn);
@@ -32,5 +28,6 @@ void Accueil::setVLayout()
 void Accueil::setWindow()
 {
 	this->setLayout(vlayout);
+	
 }
 

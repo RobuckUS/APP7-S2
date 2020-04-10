@@ -1,53 +1,190 @@
-#include "TableauJeu.h"
+#include "tableauJeu.h"
+#include <QKeyEvent>
+#include <QPropertyAnimation>
+#include <QGraphicsItemAnimation>
+#include <QTimeLine>
 
 TableauJeu::TableauJeu()
 {
+	length = 7;
+	height = 6;
+	rayon = 100;
 
-}
-TableauJeu::TableauJeu(int l, int h,int wl, int wh)
-{
-	diml = l;
-	dimh = h;
-	winl = wl;
-	winh = wh; 
-	setupWindow();
-	setupBoard(diml,dimh,winl,winh);
+	p1 = Player("Player 1", player1);
+	p2 = Player("Player 2", player2);
+	pn = Player("null", playerN);
+
+	enJeu = new Jetons(0, 0, rayon, p1);
+	addItem(enJeu);
+
+
+	setupBoard();
 }
 
-TableauJeu::~TableauJeu()
+TableauJeu::TableauJeu(int l, int h, int wWindow, int hWindow)
 {
-	for (int i = 0; i < diml; i++) {
-		for (int j = 0; j < dimh; j++) {
-			delete[] grid[i][j];
-		}
-		delete[] grid[i];
+	length = l;
+	height = h;
+	lengthWindow = wWindow;
+	rayon = (hWindow*0.9) / (height + 1);
+
+	p1 = Player("Player 1", player1);
+	p2 = Player("Player 2", player2);
+	pn = Player("null", playerN);
+
+	enJeu = new Jetons(lengthWindow / 2 - (rayon*length) / 2, 0, rayon, p1);
+	addItem(enJeu);
+	setupBoard();
+}
+
+void TableauJeu::keyPressEvent(QKeyEvent * ev)
+{
+	if (ev->key() == Qt::Key_Left)
+	{
+		enJeu->moveLeft(rayon);
 	}
-	delete[] grid;
-}
-
-void TableauJeu::setupBoard(int l, int h,int winl, int winh)
-{
-	//creations des cercles de la bonne grosseur
-	int sizeCercle = (winh / h+1)-20;
-	grid = new QGraphicsEllipseItem **[l];
-	for (int i = 0; i < l; i++) {
-		grid[i] = new QGraphicsEllipseItem *[h];
-		for (int j = 0; j < h; j++) {
-			grid[i][j] = new QGraphicsEllipseItem((sizeCercle+sizeCercle*0.1)*i,(sizeCercle+sizeCercle * 0.1)*j,sizeCercle,sizeCercle);
-			grid[i][j]->setBrush(QBrush(Qt::black));
-			scene->addItem(grid[i][j]);
+	else if (ev->key() == Qt::Key_Right)
+	{
+		enJeu->moveRight(rayon);
+	}
+	else if (ev->key() == Qt::Key_Space)
+	{
+		enterEvent();
+		if (!(winner() == pn))
+		{
+			clear();
 		}
-	}	
+	}
 }
 
-void TableauJeu::setupWindow()
+void TableauJeu::setupBoard()
 {
-	hlayout = new QHBoxLayout();
-	scene = new QGraphicsScene();
-	view = new QGraphicsView(this);
-	hlayout->addWidget(view);
-	this->setLayout(hlayout);
-	view->setScene(scene);
+	imageFond = new QImage("res//util-cache-border-256.png");
+  	tableau = new Jetons **[length];
+	fond = new QGraphicsPixmapItem**[length];
+	for (int i = 0; i < length; i++)
+	{
+		tableau[i] = new Jetons*[height];
+		fond[i] = new QGraphicsPixmapItem*[height];
+		for (int j = 0; j < height; j++)
+		{
+			fond[i][j] = new QGraphicsPixmapItem(QPixmap::fromImage( imageFond->scaled(rayon, rayon, Qt::KeepAspectRatio)));
+			tableau[i][j] = new Jetons(lengthWindow / 2 - (rayon*length) / 2 + rayon*i, rayon*j + rayon, rayon, pn);
+			addItem(tableau[i][j]);
+			fond[i][j]->setOffset(lengthWindow / 2 - (rayon*length)/2 + rayon*i, rayon*j+rayon);
+			addItem(fond[i][j]);
+		}
+	}
 
+	
+}
+
+void TableauJeu::enterEvent()
+{
+	int xIndex = enJeu->x() / rayon;
+	int count = height - 1;
+	while (tableau[xIndex][count]->getPlayer().getPlayerType() != playerN && count > 0)
+	{
+		count--;
+	}
+	if (count >= 0 && tableau[xIndex][count]->getPlayer().getPlayerType() == playerN)
+	{
+		/*QTimeLine *timer = new QTimeLine(5000);
+		timer->setFrameRange(0, 100);
+
+		QGraphicsItemAnimation *an = new QGraphicsItemAnimation;
+		an->setItem(enJeu);
+		an->setTimeLine(timer);
+		
+		for (int i = 0; i < tableau[xIndex][count]->y(); i++)
+		{
+			an->setPosAt(i/200, QPointF(i,i));
+		}
+
+		timer->start();*/
+		tableau[xIndex][count]->setPlayer(enJeu->getPlayer());
+		if (enJeu->getPlayer().getPlayerType() == player1)
+		{
+			enJeu->setPlayer(p2);
+		}
+		else
+		{
+			enJeu->setPlayer(p1);
+		}
+		
+	}
+}
+
+
+/*
+Code pour regarder qui est le gagnant. La methode retourne le nom du gagnant, ou le joueur null.
+*/
+Player TableauJeu ::winner()
+{
+	//Vérification de l'horizontale
+	for (int i = 0; i < length; i++)
+	{
+		for (int j = 0; j < height - 3; j++)
+		{
+			if (tableau[i][j]->getPlayer() == p1 && tableau[i][j + 1]->getPlayer() == p1 && tableau[i][j + 2]->getPlayer() == p1 && tableau[i][j + 3]->getPlayer() == p1)
+			{
+				return p1;
+			}
+			else if (tableau[i][j]->getPlayer() == p2 && tableau[i][j + 1]->getPlayer() == p2 && tableau[i][j + 2]->getPlayer() == p2 && tableau[i][j + 3]->getPlayer() == p2)
+			{
+				return p2;
+			}
+		}
+	}
+
+	//Vérification du verticale
+	for (int i = length - 1; i >= 3; i--)
+	{
+		for (int j = 0; j < height; j++)
+		{
+			if (tableau[i][j]->getPlayer() == p1 && tableau[i - 1][j]->getPlayer() == p1 && tableau[i - 2][j]->getPlayer() == p1 && tableau[i - 3][j]->getPlayer() == p1)
+			{
+				return p1;
+			}
+			if (tableau[i][j]->getPlayer() == p2 && tableau[i - 1][j]->getPlayer() == p2 && tableau[i - 2][j]->getPlayer() == p2 && tableau[i - 3][j]->getPlayer() == p2)
+			{
+				return p2;
+			}
+		}
+	}
+
+	//Vérification diagonale Haut gauche a en bas droite
+	for (int i = 0; i < length - 3; i++)
+	{
+		for (int j = 0; j < height - 3; j++)
+		{
+			if (tableau[i][j]->getPlayer() == p1 && tableau[i + 1][j + 1]->getPlayer() == p1 && tableau[i + 2][j + 2]->getPlayer() == p1&& tableau[i + 3][j + 3]->getPlayer() == p1)
+			{
+				return p1;
+			}
+			if (tableau[i][j]->getPlayer() == p2 && tableau[i + 1][j + 1]->getPlayer() == p2 && tableau[i + 2][j + 2]->getPlayer() == p2 && tableau[i + 3][j + 3]->getPlayer() == p2)
+			{
+				return p2;
+			}
+		}
+	}
+
+	//Verification diagonale haut droite a bas gauche
+	for (int i = 0; i < length - 3; i++)
+	{
+		for (int j = height - 1; j >= 3; j--)
+		{
+			if (tableau[i][j]->getPlayer() == p1 && tableau[i + 1][j - 1]->getPlayer() == p1 && tableau[i + 2][j - 2]->getPlayer() == p1&& tableau[i + 3][j - 3]->getPlayer() == p1)
+			{
+				return p1;
+			}
+			if (tableau[i][j]->getPlayer() == p2 && tableau[i + 1][j - 1]->getPlayer() == p2 && tableau[i + 2][j - 2]->getPlayer() == p2 && tableau[i + 3][j - 3]->getPlayer() == p2)
+			{
+				return p2;
+			}
+		}
+	}
+
+	return pn;
 }
 

@@ -25,6 +25,7 @@ public slots:
 	void setTableauJeu2();
 private:
 	void setActions();
+	void setBackground(QString fileName);
 	Accueil *accueil;
 	Parametre *parametre;
 	ParametreJeu *parametreJeu;

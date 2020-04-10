@@ -11,12 +11,14 @@ MainWindow::MainWindow()
 	int y = (availableSize.height() - winh) / 2 - 50;
 	move(x, y);
 	this->setFixedSize(winl, winh);
-
+	setBackground("res//BackGroundFinale.png");
 	accueil = new Accueil();
 	parametre = new Parametre();
 	parametreJeu = new ParametreJeu();
 	setActions();
-	this->setCentralWidget(accueil);
+	setCentralWidget(accueil);
+
+
 }
 MainWindow::~MainWindow()
 {
@@ -32,6 +34,14 @@ void MainWindow::setActions()
 	connect(parametreJeu->unJoueur, SIGNAL(clicked()), this, SLOT(setTableauJeu1()));
 	connect(parametreJeu->deuxJoueurs, SIGNAL(clicked()), this, SLOT(setTableauJeu2()));
 
+}
+void MainWindow::setBackground(QString fileName)
+{
+	QPixmap bkgnd(fileName);
+	bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+	QPalette palette;
+	palette.setBrush(QPalette::Background, bkgnd);
+	this->setPalette(palette);
 }
 void MainWindow::setParametreJeu()
 {
@@ -59,7 +69,10 @@ void MainWindow::setTableauJeu1()
 	tableauJeu = new TableauJeu(diml,dimh,winl,winh);
 	QWidget* savedWidget = this->centralWidget();
 	savedWidget->setParent(0);
-	this->setCentralWidget(tableauJeu);
+	QGraphicsView *view = new QGraphicsView(tableauJeu);
+	setBackground("res//BackGroundDesert.jpg");
+	view->setStyleSheet("background: transparent");
+	this->setCentralWidget(view);
 }
 
 void MainWindow::setTableauJeu2()
@@ -70,5 +83,8 @@ void MainWindow::setTableauJeu2()
 	tableauJeu = new TableauJeu();
 	QWidget* savedWidget = this->centralWidget();
 	savedWidget->setParent(0);
-	this->setCentralWidget(tableauJeu);
+	QGraphicsView *view = new QGraphicsView(tableauJeu);
+	setBackground("res//BackGroundDesert.jpg");
+	view->setStyleSheet("background: transparent");
+	this->setCentralWidget(view);
 }

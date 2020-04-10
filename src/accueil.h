@@ -14,9 +14,7 @@ private:
 	QVBoxLayout *vlayout;
 	void setVLayout();
 	void setWindow();
-	void setTitre();
 	void setButtons();
-	QLabel *titre;
-	
+
 
 };
