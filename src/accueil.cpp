@@ -22,7 +22,8 @@ void Accueil::setVLayout()
 	vlayout->addWidget(tableauScoreBtn);
 	vlayout->addWidget(parametreBtn);
 	vlayout->addWidget(quitterBtn);
-
+	vlayout->setMargin(400);
+	
 }
 
 void Accueil::setWindow()

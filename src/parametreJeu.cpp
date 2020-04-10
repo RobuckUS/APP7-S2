@@ -1,4 +1,5 @@
 #include "parametreJeu.h"
+#include <QLabel>
 
 ParametreJeu::ParametreJeu()
 {
@@ -28,9 +29,9 @@ void ParametreJeu::setHlayout()
 	hauteur->setRange(6,MaxSize);
 	hlayout->addWidget(unJoueur);
 	hlayout->addWidget(deuxJoueurs);
-	hlayoutdim->addWidget(labelL);
-	hlayoutdim->addWidget(labelH);
+	hlayoutval ->addWidget(labelL);
 	hlayoutval->addWidget(largeur);
+	hlayoutval->addWidget(labelH);
 	hlayoutval->addWidget(hauteur);
 	
 }
@@ -38,10 +39,12 @@ void ParametreJeu::setHlayout()
 void ParametreJeu::setVLayout()
 {
 	vlayout = new QVBoxLayout();
+	vlayout->addWidget(new QLabel(""));
 	vlayout->addLayout(hlayoutdim);
 	vlayout->addLayout(hlayoutval);
 	vlayout->addLayout(hlayout);
 	vlayout->addWidget(jeuretourbtn);
+	vlayout->setMargin(400);
 }
 
 void ParametreJeu::setWindow()
