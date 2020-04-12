@@ -17,7 +17,7 @@ MainWindow::MainWindow()
 	parametreJeu = new ParametreJeu();
 	setActions();
 	setCentralWidget(accueil);
-
+	setBackgroundMusique();
 
 }
 MainWindow::~MainWindow()
@@ -27,12 +27,23 @@ MainWindow::~MainWindow()
 
 void MainWindow::setActions()
 {
+	/*Boutons present dans l'accueil*/
 	connect(accueil->parametreBtn, SIGNAL(released()), this, SLOT(setParametre()));
 	connect(accueil->jouerBtn, SIGNAL(released()), this, SLOT(setParametreJeu()));
+	connect(accueil->quitterBtn, SIGNAL(clicked()), this, SLOT(quitter()));
+
+	/*Boutons dans parametre*/
 	connect(parametre->retourBtn, SIGNAL(released()), this, SLOT(retourMenu()));
+	connect(parametre->musiqueBtn, SIGNAL(released()), this, SLOT(musiqueONandOFF()));
+
+	/*Sliders dans parametre*/
+	connect(parametre->volumeMusiqueSlider, SIGNAL(valueChanged(int)), this, SLOT(volumeBackgroundMusic(int)));
+
+	/*Boutons dans parametre jeu*/
 	connect(parametreJeu->jeuretourbtn, SIGNAL(released()), this,SLOT(retourMenu()));
 	connect(parametreJeu->unJoueur, SIGNAL(clicked()), this, SLOT(setTableauJeu1()));
 	connect(parametreJeu->deuxJoueurs, SIGNAL(clicked()), this, SLOT(setTableauJeu2()));
+	
 
 }
 void MainWindow::setBackground(QString fileName)
@@ -42,6 +53,18 @@ void MainWindow::setBackground(QString fileName)
 	QPalette palette;
 	palette.setBrush(QPalette::Background, bkgnd);
 	this->setPalette(palette);
+}
+void MainWindow::setBackgroundMusique()
+{
+	/*Playlist, suffit de addmedia pour ajouter de nouvelles chansons*/
+	QMediaPlaylist *playlist = new QMediaPlaylist();
+	playlist->addMedia(QUrl("res//snd//US-menu.mp3"));
+	playlist->setPlaybackMode(QMediaPlaylist::Loop);
+	
+	
+	backgroundMusique = new QMediaPlayer();
+	backgroundMusique->setMedia(playlist);
+	backgroundMusique->play();
 }
 void MainWindow::setParametreJeu()
 {
@@ -88,3 +111,29 @@ void MainWindow::setTableauJeu2()
 	view->setStyleSheet("background: transparent");
 	this->setCentralWidget(view);
 }
+
+
+/*Active et desactive la musique a partir de parametre*/
+void MainWindow::musiqueONandOFF()
+{
+	if (backgroundMusique->isMuted() == false)
+	{
+		backgroundMusique->setMuted(true);
+	}
+	else
+	{
+		backgroundMusique->setMuted(false);
+	}
+}
+
+void MainWindow::volumeBackgroundMusic(int volume)
+{
+	backgroundMusique->setVolume(volume);
+}
+
+void MainWindow::quitter()
+{
+	exit(0);
+}
+
+

@@ -41,11 +41,17 @@ void TableauJeu::keyPressEvent(QKeyEvent * ev)
 {
 	if (ev->key() == Qt::Key_Left)
 	{
-		enJeu->moveLeft(rayon);
+		if (enJeu->x() > 0)
+		{
+			enJeu->moveLeft(rayon);
+		}
 	}
 	else if (ev->key() == Qt::Key_Right)
 	{
-		enJeu->moveRight(rayon);
+		if (enJeu->x() < (length-1) * rayon)
+		{
+			enJeu->moveRight(rayon);
+		}
 	}
 	else if (ev->key() == Qt::Key_Space)
 	{

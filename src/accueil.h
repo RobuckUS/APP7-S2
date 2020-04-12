@@ -10,6 +10,7 @@ public:
 	QPushButton *quitterBtn;
 	QPushButton *parametreBtn;
 	QPushButton *tableauScoreBtn;
+
 private:
 	QVBoxLayout *vlayout;
 	void setVLayout();
