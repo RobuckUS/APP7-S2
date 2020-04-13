@@ -44,7 +44,6 @@ void MainWindow::setActions()
 	connect(parametreJeu->unJoueur, SIGNAL(clicked()), this, SLOT(setTableauJeu1()));
 	connect(parametreJeu->deuxJoueurs, SIGNAL(clicked()), this, SLOT(setTableauJeu2()));
 	
-
 }
 void MainWindow::setBackground(QString fileName)
 {
@@ -66,6 +65,7 @@ void MainWindow::setBackgroundMusique()
 	backgroundMusique->setMedia(playlist);
 	backgroundMusique->play();
 }
+
 void MainWindow::setParametreJeu()
 {
 	QWidget* savedWidget = this->centralWidget();
@@ -96,6 +96,7 @@ void MainWindow::setTableauJeu1()
 	setBackground("res//BackGroundDesert.jpg");
 	view->setStyleSheet("background: transparent");
 	this->setCentralWidget(view);
+	connect(tableauJeu, SIGNAL(winnerSignal(Player)), this, SLOT(setWinner(Player)));
 }
 
 void MainWindow::setTableauJeu2()
@@ -110,6 +111,7 @@ void MainWindow::setTableauJeu2()
 	setBackground("res//BackGroundDesert.jpg");
 	view->setStyleSheet("background: transparent");
 	this->setCentralWidget(view);
+	connect(tableauJeu, SIGNAL(winnerSignal(Player)), this, SLOT(setWinner(Player)));
 }
 
 
@@ -130,6 +132,33 @@ void MainWindow::volumeBackgroundMusic(int volume)
 {
 	backgroundMusique->setVolume(volume);
 }
+
+void MainWindow::setWinner(Player p)
+{
+	QLabel winner;
+	QMediaPlaylist *winnerList = new QMediaPlaylist();
+	tableauJeu->clear();
+	if (p.getPlayerType() == player1)
+	{
+		winner.setText("The mexicans won!");
+		winnerList->addMedia(QUrl("res//snd//MX-victory.mp3"));
+		backgroundMusique->setPlaylist(winnerList);
+		backgroundMusique->play();
+		tableauJeu->animationMexicain();
+	}
+	else if (p.getPlayerType() == player2)
+	{
+		winner.setText("The americans won!");
+		winnerList->addMedia(QUrl("res//snd//US-victory.mp3"));
+		backgroundMusique->setPlaylist(winnerList);
+		backgroundMusique->play();
+
+	}
+	
+
+}
+
+
 
 void MainWindow::quitter()
 {

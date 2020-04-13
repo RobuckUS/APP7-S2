@@ -1,7 +1,6 @@
 #include "tableauJeu.h"
 #include <QKeyEvent>
 #include <QPropertyAnimation>
-#include <QGraphicsItemAnimation>
 #include <QTimeLine>
 
 TableauJeu::TableauJeu()
@@ -58,7 +57,7 @@ void TableauJeu::keyPressEvent(QKeyEvent * ev)
 		enterEvent();
 		if (!(winner() == pn))
 		{
-			clear();
+			emit(winnerSignal(winner()));
 		}
 	}
 }
@@ -85,6 +84,7 @@ void TableauJeu::setupBoard()
 	
 }
 
+
 void TableauJeu::enterEvent()
 {
 	int xIndex = enJeu->x() / rayon;
@@ -98,16 +98,17 @@ void TableauJeu::enterEvent()
 		/*QTimeLine *timer = new QTimeLine(5000);
 		timer->setFrameRange(0, 100);
 
-		QGraphicsItemAnimation *an = new QGraphicsItemAnimation;
-		an->setItem(enJeu);
-		an->setTimeLine(timer);
-		
-		for (int i = 0; i < tableau[xIndex][count]->y(); i++)
+		QGraphicsItemAnimation *animation = new QGraphicsItemAnimation;
+		animation->setItem(enJeu);
+		animation->setTimeLine(timer);
+		double yInitialPos = enJeu->y();
+		for (int i = yInitialPos; i < tableau[xIndex][count]->y(); i++)
 		{
-			an->setPosAt(i/200, QPointF(i,i));
+			animation->setPosAt(i / lengthWindow, QPointF(0, yInitialPos-i));
 		}
+		timer->start();
+		*/
 
-		timer->start();*/
 		tableau[xIndex][count]->setPlayer(enJeu->getPlayer());
 		if (enJeu->getPlayer().getPlayerType() == player1)
 		{
@@ -194,3 +195,30 @@ Player TableauJeu ::winner()
 	return pn;
 }
 
+
+
+void TableauJeu::animationMexicain()
+{
+	animation = new QGraphicsItemAnimation;
+	QGraphicsPixmapItem *mexican = new QGraphicsPixmapItem(QPixmap("res//the_mexican.png"));
+	QTimeLine *timer = new QTimeLine(5000);
+	timer->setFrameRange(0, 100);
+
+	
+	animation->setItem(mexican);
+	animation->setTimeLine(timer);
+
+	for (int i = lengthWindow-300; i >0; i--)
+	{
+		animation->setPosAt(i / lengthWindow, QPointF(lengthWindow-i-300, 0));
+	}
+
+	timer->start();
+	addItem(mexican);
+	
+
+}
+void TableauJeu::animationFinishedMexican()
+{
+
+}

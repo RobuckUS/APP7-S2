@@ -28,6 +28,7 @@ public slots:
 	void quitter();
 	void musiqueONandOFF();
 	void volumeBackgroundMusic(int volume);
+	void setWinner(Player P);
 
 private:
 	void setActions();
