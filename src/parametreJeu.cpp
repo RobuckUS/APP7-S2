@@ -29,28 +29,57 @@ void ParametreJeu::setButton()
 
 void ParametreJeu::setHlayout()
 {
+	/*Configuration du font*/
 	QFont font = QFont("Showcard Gothic");
 	font.setPointSize(20);
 
+	/*Configurations Labels*/
 	labelH = new QLabel("Hauteur:");
 	labelH->setFont(font);
-
 	labelL = new QLabel("Largeur:");
 	labelL->setFont(font);
+	lblNameP1 = new QLabel("Joueur 1:");
+	lblNameP1->setFont(font);
+	lblNameP2 = new QLabel("Joueur 2:");
+	lblNameP2->setFont(font);
+
+	/*QTextEdit pour les noms*/
+	QLineEdit *txtNom1 = new QLineEdit();
+	txtNom1->setFixedSize(250, 30);
+	txtNom1->setMaximumWidth(250);
+	txtNom1->setFont(font);
+	QLineEdit *txtNom2 = new QLineEdit();
+	txtNom2->setFixedSize(250, 30);
+	txtNom2->setMaximumWidth(250);
+	txtNom2->setFont(font);
 	
 	
+	/*Fonction pour les QSpinBox pour la taille du tableau*/
 	largeur = new QSpinBox();
 	largeur->setRange(6,MaxSize);
+	largeur->setFont(font);
 	hauteur = new QSpinBox();
 	hauteur->setRange(6,MaxSize);
+	hauteur->setFont(font);
 	
+	/*Hlayout pour les noms*/
+	hname = new QHBoxLayout();
+	hname->setSpacing(0);
+	hname->addWidget(lblNameP1);
+	hname->addWidget(txtNom1);
+	hname->addSpacing(30);
+	hname->addWidget(lblNameP2);
+	hname->addWidget(txtNom2);
 
+
+	/*Hlayout pour les valeurs*/
 	hlayoutval = new QHBoxLayout();
 	hlayoutval ->addWidget(labelL);
 	hlayoutval->addWidget(largeur);
 	hlayoutval->addWidget(labelH);
 	hlayoutval->addWidget(hauteur);
 
+	/*HLayout pour les boutons*/
 	hlayout = new QHBoxLayout();
 	hlayout->addWidget(jeuretourbtn);
 	hlayout->addWidget(deuxJoueurs);
@@ -62,8 +91,11 @@ void ParametreJeu::setVLayout()
 	vlayout = new QVBoxLayout();
 	vlayout->addWidget(new QLabel(""));
 	vlayout->setAlignment(Qt::AlignCenter);
-	vlayout->setSpacing(50);
+	vlayout->setSpacing(20);
 
+
+	/*Ajout des layout au hlayout*/
+	vlayout->addLayout(hname);
 	vlayout->addLayout(hlayoutval);
 	vlayout->addLayout(hlayout);
 	vlayout->addWidget(jeuretourbtn);
@@ -72,7 +104,10 @@ void ParametreJeu::setVLayout()
 
 void ParametreJeu::setWindow()
 {
-	this->setLayout(vlayout);
+	
+	vlayout->setContentsMargins(QMargins(430, 250, 440, 200));
+	setLayout(vlayout);
+	
 }
 
 void ParametreJeu::setValues()

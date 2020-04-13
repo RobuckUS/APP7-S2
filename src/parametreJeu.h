@@ -5,7 +5,7 @@
 #include <QSPINBOX>
 #include <QSTRING>
 #include <QMESSAGEBOX>
-
+#include <QLineEdit>
 
 class ParametreJeu : public QWidget
 {
@@ -17,18 +17,25 @@ public:
 	QSpinBox *largeur;
 	QSpinBox *hauteur;
 	QPushButton *jeuretourbtn;
+
+	QLabel *lblNameP1;
+	QLabel *lblNameP2;
+
+
 	QLabel *labelL;
 	QLabel *labelH;
+
+
 	int nbj;
 	int diml;
 	int dimh;
 	void setValues();
 private:
 	QHBoxLayout *hlayout;
-	QVBoxLayout *vlayout;
+	QHBoxLayout *hname;
 	QHBoxLayout *hlayoutval;
 	
-
+	QVBoxLayout *vlayout;
 
 	void setButton();
 	void setHlayout();

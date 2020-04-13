@@ -70,6 +70,7 @@ void MainWindow::setParametreJeu()
 	QWidget* savedWidget = this->centralWidget();
 	savedWidget->setParent(0);
 	this->setCentralWidget(parametreJeu);
+	
 }
 void MainWindow::setParametre()
 {
