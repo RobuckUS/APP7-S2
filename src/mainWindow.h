@@ -27,7 +27,7 @@ public slots:
 	void quitter();
 	void musiqueONandOFF();
 	void volumeBackgroundMusic(int volume);
-	void setWinner(Player P);
+	void setWinner(Player pWin, Player pLost);
 	void backgroundMexicanWin();
 
 private:

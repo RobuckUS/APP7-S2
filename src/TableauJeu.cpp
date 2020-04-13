@@ -74,7 +74,16 @@ void TableauJeu::keyPressEvent(QKeyEvent * ev)
 		enterEvent();
 		if (!(winner() == pn))
 		{
-			emit(winnerSignal(winner()));
+			Player pLost;
+			if (winner() == p1)
+			{
+				pLost = p2;
+			}
+			else
+			{
+				pLost = p1;
+			}
+			emit(winnerSignal(winner(), pLost));
 		}
 	}
 }

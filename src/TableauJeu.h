@@ -22,7 +22,7 @@ public:
 	
 
 signals:
-	void winnerSignal(Player p);
+	void winnerSignal(Player pw, Player pl);
 
 private:
 	Jetons ***tableau;
