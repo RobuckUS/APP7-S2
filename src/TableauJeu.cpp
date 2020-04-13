@@ -14,7 +14,7 @@ TableauJeu::TableauJeu()
 	p2 = Player("Player 2", player2);
 	pn = Player("null", playerN);
 
-	enJeu = new Jetons(0, 0, rayon, p1);
+	enJeu = new Jetons(0, 0, rayon, p2);
 	addItem(enJeu);
 
 
@@ -32,7 +32,23 @@ TableauJeu::TableauJeu(int l, int h, int wWindow, int hWindow)
 	p2 = Player("Player 2", player2);
 	pn = Player("null", playerN);
 
-	enJeu = new Jetons(lengthWindow / 2 - (rayon*length) / 2, 0, rayon, p1);
+	enJeu = new Jetons(lengthWindow / 2 - (rayon*length) / 2, 0, rayon, p2);
+	addItem(enJeu);
+	setupBoard();
+}
+
+TableauJeu::TableauJeu(int l, int h, int wWindow, int hWindow, Player p1, Player p2)
+{
+	length = l;
+	height = h;
+	lengthWindow = wWindow;
+	rayon = (hWindow*0.9) / (height + 1);
+
+	this->p1 = p1;
+	this->p2 = p2;
+	pn = Player("null", playerN);
+
+	enJeu = new Jetons(lengthWindow / 2 - (rayon*length) / 2, 0, rayon, this->p2);
 	addItem(enJeu);
 	setupBoard();
 }
@@ -96,20 +112,6 @@ void TableauJeu::enterEvent()
 	}
 	if (count >= 0 && tableau[xIndex][count]->getPlayer().getPlayerType() == playerN)
 	{
-		/*QTimeLine *timer = new QTimeLine(5000);
-		timer->setFrameRange(0, 100);
-
-		QGraphicsItemAnimation *animation = new QGraphicsItemAnimation;
-		animation->setItem(enJeu);
-		animation->setTimeLine(timer);
-		double yInitialPos = enJeu->y();
-		for (int i = yInitialPos; i < tableau[xIndex][count]->y(); i++)
-		{
-			animation->setPosAt(i / lengthWindow, QPointF(0, yInitialPos-i));
-		}
-		timer->start();
-		*/
-
 		tableau[xIndex][count]->setPlayer(enJeu->getPlayer());
 		if (enJeu->getPlayer().getPlayerType() == player1)
 		{

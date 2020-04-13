@@ -14,6 +14,7 @@ public:
 	int getPlayerType();
 	string getName();
 	bool operator ==(Player p);
+	
 private:
 	string nom;
 	int win;

@@ -12,6 +12,7 @@ class TableauJeu : public QGraphicsScene
 public:
 	TableauJeu();
 	TableauJeu(int l, int h, int wWindow, int hWindow);
+	TableauJeu(int l, int h, int wWindow, int hWindow, Player p1, Player p2);
 	void keyPressEvent(QKeyEvent *ev);
 	Player winner();
 	Player pn;

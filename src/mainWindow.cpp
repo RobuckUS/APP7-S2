@@ -86,10 +86,14 @@ void MainWindow::retourMenu()
 }
 void MainWindow::setTableauJeu1()
 {
+	Player p1 = Player(parametreJeu->txtNom2->text().toStdString(), player1);
+	Player p2 = Player(parametreJeu->txtNom1->text().toStdString(), player2);
+
+
 	parametreJeu->setValues();
 	this->diml = parametreJeu->diml;
 	this->dimh = parametreJeu->dimh;
-	tableauJeu = new TableauJeu(diml,dimh,winl,winh);
+	tableauJeu = new TableauJeu(diml,dimh,winl,winh,p1,p2);
 	QWidget* savedWidget = this->centralWidget();
 	savedWidget->setParent(0);
 	QGraphicsView *view = new QGraphicsView(tableauJeu);
@@ -141,6 +145,7 @@ void MainWindow::setWinner(Player p)
 
 	}
 	
+	cout << p.getName() << endl;
 	connect(tableauJeu->animation, SIGNAL(&finished()), this, SLOT(backgroundMexicanWin()));
 
 }

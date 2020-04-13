@@ -38,17 +38,17 @@ void ParametreJeu::setHlayout()
 	labelH->setFont(font);
 	labelL = new QLabel("Largeur:");
 	labelL->setFont(font);
-	lblNameP1 = new QLabel("Joueur 1:");
+	lblNameP1 = new QLabel("Trump:");
 	lblNameP1->setFont(font);
-	lblNameP2 = new QLabel("Joueur 2:");
+	lblNameP2 = new QLabel("Senor:");
 	lblNameP2->setFont(font);
 
 	/*QTextEdit pour les noms*/
-	QLineEdit *txtNom1 = new QLineEdit();
+	txtNom1 = new QLineEdit();
 	txtNom1->setFixedSize(250, 30);
 	txtNom1->setMaximumWidth(250);
 	txtNom1->setFont(font);
-	QLineEdit *txtNom2 = new QLineEdit();
+	txtNom2 = new QLineEdit();
 	txtNom2->setFixedSize(250, 30);
 	txtNom2->setMaximumWidth(250);
 	txtNom2->setFont(font);

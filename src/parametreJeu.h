@@ -25,6 +25,8 @@ public:
 	QLabel *labelL;
 	QLabel *labelH;
 
+	QLineEdit *txtNom1;
+	QLineEdit *txtNom2;
 
 	int nbj;
 	int diml;
