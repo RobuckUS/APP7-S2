@@ -24,11 +24,11 @@ public slots:
 	void setParametreJeu();
 	void retourMenu();
 	void setTableauJeu1();
-	void setTableauJeu2();
 	void quitter();
 	void musiqueONandOFF();
 	void volumeBackgroundMusic(int volume);
 	void setWinner(Player P);
+	void backgroundMexicanWin();
 
 private:
 	void setActions();

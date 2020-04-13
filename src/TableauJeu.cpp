@@ -5,6 +5,7 @@
 
 TableauJeu::TableauJeu()
 {
+
 	length = 7;
 	height = 6;
 	rayon = 100;
@@ -200,6 +201,7 @@ Player TableauJeu ::winner()
 void TableauJeu::animationMexicain()
 {
 	animation = new QGraphicsItemAnimation;
+	
 	QGraphicsPixmapItem *mexican = new QGraphicsPixmapItem(QPixmap("res//the_mexican.png"));
 	QTimeLine *timer = new QTimeLine(5000);
 	timer->setFrameRange(0, 100);
@@ -216,9 +218,5 @@ void TableauJeu::animationMexicain()
 	timer->start();
 	addItem(mexican);
 	
-
-}
-void TableauJeu::animationFinishedMexican()
-{
 
 }

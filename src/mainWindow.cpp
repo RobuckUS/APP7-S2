@@ -41,8 +41,7 @@ void MainWindow::setActions()
 
 	/*Boutons dans parametre jeu*/
 	connect(parametreJeu->jeuretourbtn, SIGNAL(released()), this,SLOT(retourMenu()));
-	connect(parametreJeu->unJoueur, SIGNAL(clicked()), this, SLOT(setTableauJeu1()));
-	connect(parametreJeu->deuxJoueurs, SIGNAL(clicked()), this, SLOT(setTableauJeu2()));
+	connect(parametreJeu->deuxJoueurs, SIGNAL(clicked()), this, SLOT(setTableauJeu1()));
 	
 }
 void MainWindow::setBackground(QString fileName)
@@ -99,20 +98,6 @@ void MainWindow::setTableauJeu1()
 	connect(tableauJeu, SIGNAL(winnerSignal(Player)), this, SLOT(setWinner(Player)));
 }
 
-void MainWindow::setTableauJeu2()
-{
-	parametreJeu->setValues();
-	this->diml = parametreJeu->diml;
-	this->dimh = parametreJeu->dimh;
-	tableauJeu = new TableauJeu();
-	QWidget* savedWidget = this->centralWidget();
-	savedWidget->setParent(0);
-	QGraphicsView *view = new QGraphicsView(tableauJeu);
-	setBackground("res//BackGroundDesert.jpg");
-	view->setStyleSheet("background: transparent");
-	this->setCentralWidget(view);
-	connect(tableauJeu, SIGNAL(winnerSignal(Player)), this, SLOT(setWinner(Player)));
-}
 
 
 /*Active et desactive la musique a partir de parametre*/
@@ -155,7 +140,13 @@ void MainWindow::setWinner(Player p)
 
 	}
 	
+	connect(tableauJeu->animation, SIGNAL(&finished()), this, SLOT(backgroundMexicanWin()));
 
+}
+
+void MainWindow::backgroundMexicanWin()
+{
+	this->setBackground("res//texas_background.jpg");
 }
 
 

@@ -13,7 +13,7 @@ void Parametre::setButtons()
 	musiqueBtn = new QPushButton();
 	connect(musiqueBtn, SIGNAL(released()), this, SLOT(setMusiqueBtn()));
 	musiqueBtn->setIcon(QIcon("res//icone_musique_on.png"));
-	musiqueBtn->setIconSize(QSize(200, 100));
+	musiqueBtn->setIconSize(QSize(200, 75));
 	musiqueBtn->setMinimumSize(QSize(100, 60));
 	musiqueBtn->setMaximumSize(QSize(220, 100));
 	
@@ -37,10 +37,11 @@ void Parametre::setButtons()
 
 
 
-	retourBtn = new QPushButton("Retour");
-	retourBtn->setIconSize(QSize(200, 100));
+	retourBtn = new QPushButton();
+	retourBtn->setIconSize(QSize(200, 50));
 	retourBtn->setMinimumSize(QSize(100, 60));
 	retourBtn->setMaximumSize(QSize(220, 100));
+	retourBtn->setIcon(QIcon("res//fleche_retour_icone.png"));
 }
 
 void Parametre::setMusiqueBtn()

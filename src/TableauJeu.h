@@ -15,9 +15,10 @@ public:
 	void keyPressEvent(QKeyEvent *ev);
 	Player winner();
 	Player pn;
+	QGraphicsItemAnimation *animation;
 	void animationMexicain();
-public slots:
-	void animationFinishedMexican();
+
+	
 
 signals:
 	void winnerSignal(Player p);
@@ -30,7 +31,7 @@ private:
 	QGraphicsScene * scene;
 	QGraphicsView * view;
 	QHBoxLayout * hlayout;
-	QGraphicsItemAnimation *animation;
+	
 
 	int length;
 	int height;

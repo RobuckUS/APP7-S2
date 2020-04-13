@@ -9,10 +9,10 @@
 
 class ParametreJeu : public QWidget
 {
+	Q_OBJECT
 public:
 	ParametreJeu();
 	QMessageBox * messagebox;
-	QPushButton *unJoueur;
 	QPushButton *deuxJoueurs;
 	QSpinBox *largeur;
 	QSpinBox *hauteur;
@@ -25,9 +25,11 @@ public:
 	void setValues();
 private:
 	QHBoxLayout *hlayout;
-	QHBoxLayout *hlayoutdim;
 	QVBoxLayout *vlayout;
 	QHBoxLayout *hlayoutval;
+	
+
+
 	void setButton();
 	void setHlayout();
 	void setVLayout();
