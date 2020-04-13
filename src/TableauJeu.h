@@ -13,12 +13,13 @@ public:
 	TableauJeu();
 	TableauJeu(int l, int h, int wWindow, int hWindow);
 	TableauJeu(int l, int h, int wWindow, int hWindow, Player p1, Player p2);
+	QTimeLine *timer;
 	void keyPressEvent(QKeyEvent *ev);
 	Player winner();
 	Player pn;
 	QGraphicsItemAnimation *animation;
 	void animationMexicain();
-
+	void animationTrump();
 	
 
 signals:

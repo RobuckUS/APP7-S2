@@ -19,6 +19,8 @@ public:
 	int dimh;
 	int winl;
 	int winh;
+signals:
+	void winnerSignal (Player pWin, Player pLost);
 public slots:
 	void setParametre();
 	void setParametreJeu();
@@ -29,12 +31,16 @@ public slots:
 	void volumeBackgroundMusic(int volume);
 	void setWinner(Player pWin, Player pLost);
 	void backgroundMexicanWin();
+	void backgroundTrumpWin();
+	void gestionFinPartie();
+	void retourAccueil();
+	void rejouer();
 
 private:
 	void setActions();
 	void setBackground(QString fileName);
 	void setBackgroundMusique();
-
+	
 	Accueil *accueil;
 	Parametre *parametre;
 	ParametreJeu *parametreJeu;

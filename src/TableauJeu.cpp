@@ -214,7 +214,7 @@ void TableauJeu::animationMexicain()
 	animation = new QGraphicsItemAnimation;
 	
 	QGraphicsPixmapItem *mexican = new QGraphicsPixmapItem(QPixmap("res//the_mexican.png"));
-	QTimeLine *timer = new QTimeLine(5000);
+	timer = new QTimeLine(4000);
 	timer->setFrameRange(0, 100);
 
 	
@@ -230,4 +230,21 @@ void TableauJeu::animationMexicain()
 	addItem(mexican);
 	
 
+}
+
+void TableauJeu::animationTrump()
+{
+	animation = new QGraphicsItemAnimation;
+	QGraphicsPixmapItem *trump = new QGraphicsPixmapItem(QPixmap("res//trump_tournant.png"));
+
+	timer = new QTimeLine(4000);
+	animation->setItem(trump);
+	animation->setTimeLine(timer);
+	
+	for (double i = 0.0; i < 1.2; i=i + 0.05)
+	{
+		animation->setScaleAt(i / 100, i, i);
+	}
+	timer->start();
+	addItem(trump);
 }
