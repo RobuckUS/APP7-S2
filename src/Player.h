@@ -11,6 +11,10 @@ public:
 	Player(string n = "Player", int type = player1);
 	void increaseWin();
 	void increaseLoss();
+
+	int getWin();
+	int getLoss();
+
 	int getPlayerType();
 	string getName();
 	bool operator ==(Player p);

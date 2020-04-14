@@ -1,5 +1,11 @@
 #include "mainWindow.h"
 #include <QTimeLine>
+#include <iostream>
+#include <QFile>
+#include <QString>
+#include <QTextStream>
+#include <QStringList>
+
 MainWindow::MainWindow()
 {
 	//Dimensions de l'ecran
@@ -16,6 +22,10 @@ MainWindow::MainWindow()
 	accueil = new Accueil();
 	parametre = new Parametre();
 	parametreJeu = new ParametreJeu();
+
+	//add
+	tableauScore = new TableauScore();
+
 	setActions();
 	setCentralWidget(accueil);
 	setBackgroundMusique();
@@ -33,6 +43,10 @@ void MainWindow::setActions()
 	connect(accueil->jouerBtn, SIGNAL(released()), this, SLOT(setParametreJeu()));
 	connect(accueil->quitterBtn, SIGNAL(clicked()), this, SLOT(quitter()));
 
+	/*Bouton tableauScore*/
+	connect(accueil->tableauScoreBtn,SIGNAL(released()), this, SLOT(setTableauScore()));
+	connect(tableauScore->retourBtn, SIGNAL(released()), this, SLOT(retourMenu()));
+	
 	/*Boutons dans parametre*/
 	connect(parametre->retourBtn, SIGNAL(released()), this, SLOT(retourMenu()));
 	connect(parametre->musiqueBtn, SIGNAL(released()), this, SLOT(musiqueONandOFF()));
@@ -86,6 +100,15 @@ void MainWindow::retourMenu()
 	savedWidget->setParent(0);
 	this->setCentralWidget(accueil);
 }
+
+//add
+void MainWindow::setTableauScore()
+{
+	QWidget* savedWidget = this->centralWidget();
+	savedWidget->setParent(0);
+	this->setCentralWidget(tableauScore);
+}
+
 void MainWindow::setTableauJeu1()
 {
 	Player p1 = Player(parametreJeu->txtNom2->text().toStdString(), player1);
@@ -138,6 +161,8 @@ void MainWindow::setWinner(Player pWin, Player pLost)
 		backgroundMusique->play();
 		tableauJeu->animationMexicain();
 		connect(tableauJeu->timer, SIGNAL(finished()), this, SLOT(backgroundMexicanWin()));
+
+		
 	}
 	else if (pWin.getPlayerType() == player2)
 	{
@@ -154,8 +179,78 @@ void MainWindow::setWinner(Player pWin, Player pLost)
 	cout << "Winner" << pWin.getName() << endl;
 	cout << "Looser" << pLost.getName() << endl;
 	emit(winnerSignal(pWin, pLost));
+
+	//File structure
+	pWin.increaseWin();
+	pLost.increaseLoss();
 	
+	QString winnerName = QString::fromStdString(pWin.getName());
+	//QString winnerWin = QString::number(pWin.getWin());
+	//QString winnerLoss = QString::number(pWin.getLoss());
+
+	QString loserName = QString::fromStdString(pLost.getName());
+	//QString loserWin = QString::number(pLost.getWin());
+	//QString loserLoss = QString::number(pLost.getLoss());
+
+	QStringList listFileLine;
+	QStringList splitFileLine;
+
+	bool winnerExist = false;
+	bool loserExist = false;
+
+	QFile file("res//Score.txt");
+	QTextStream instream(&file);
+
+	//Lire dans le fichier et remplir une liste pour chaque line du fichier
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+		return;
+	while (!instream.atEnd())
+	{
+		listFileLine << instream.readLine();
+	}
+	file.close();
+
+	//Aller reécrire le fichier selon le changement des wins et loses
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
+		return;
+
+	for (int i = 0; i < listFileLine.length(); i++)
+	{
+		splitFileLine = listFileLine[i].split(" ");
+		if (winnerName != splitFileLine[0] && loserName != splitFileLine[0])
+		{
+			instream << listFileLine[i] << "\n";
+		}
+		else
+		{
+			if (winnerName == splitFileLine[0])
+			{
+				QString numberWin = QString::number(splitFileLine[1].toInt() + 1);
+				instream << splitFileLine[0] << " " << numberWin << " " << splitFileLine[2] << "\n";
+				winnerExist = true;
+			}
+			if (loserName == splitFileLine[0])
+			{
+				QString numberLoss = QString::number(splitFileLine[2].toInt() + 1);
+				instream << splitFileLine[0] << " " << splitFileLine[1] << " " << numberLoss << "\n";
+				loserExist = true;
+			}
+		}
+	}
+	//Ajoute des nouveaux joueur dans la liste du fichier
+	if (winnerExist == false)
+	{
+		instream << winnerName << " " << "1" << " " << "0" << "\n";
+	}
+	if (loserExist == false)
+	{
+		instream << loserName << " " << "0" << " " << "1" << "\n";
+	}
+	file.close();
+
 	connect(tableauJeu->timer, SIGNAL(finished()), this, SLOT(gestionFinPartie()));
+	tableauScore->showScore();
+
 }
 
 void MainWindow::backgroundMexicanWin()

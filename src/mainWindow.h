@@ -7,6 +7,7 @@
 #include "parametre.h"
 #include "parametreJeu.h"
 #include "tableauJeu.h"
+#include "tableauScore.h"
 #include <QSTYLE>
 
 class MainWindow : public QMainWindow
@@ -36,6 +37,9 @@ public slots:
 	void retourAccueil();
 	void rejouer();
 
+	//add
+	void setTableauScore();
+
 private:
 	void setActions();
 	void setBackground(QString fileName);
@@ -43,8 +47,13 @@ private:
 	
 	Accueil *accueil;
 	Parametre *parametre;
+
+	//add
+	TableauScore* tableauScore;
+
 	ParametreJeu *parametreJeu;
 	TableauJeu *tableauJeu;
 	QMediaPlayer *backgroundMusique;
+
 
 };

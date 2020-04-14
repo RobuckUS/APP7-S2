@@ -17,6 +17,16 @@ void Player::increaseLoss()
 	loss++;
 }
 
+int Player::getWin()
+{
+	return win;
+}
+
+int Player::getLoss()
+{
+	return loss;
+}
+
 int Player::getPlayerType()
 {
 	return playerType;
