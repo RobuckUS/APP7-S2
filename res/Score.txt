@@ -14,3 +14,6 @@ BEBE 0 1
 TRTRTR 0 1
 FGFGFG 0 1
 HHHHH 1 0
+trump 4 1
+thierry 0 3
+mattresponsable 1 1

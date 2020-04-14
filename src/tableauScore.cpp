@@ -7,9 +7,10 @@
 
 TableauScore::TableauScore()
 {
+	viewList = new QListWidget(this);
 	setButtons();
 	showScore();
-	viewList->addItems(listFileLine);
+
 	setVLayout();
 }
 void TableauScore::setButtons()
@@ -22,7 +23,7 @@ void TableauScore::setButtons()
 }
 void TableauScore::showScore()
 {
-	viewList = new QListWidget(this);
+	
 	listFileLine.clear();
 
 	QFile file("res//Score.txt");
@@ -51,7 +52,7 @@ void TableauScore::showScore()
 	//zoneScroll = new QScrollArea;
 	//viewList->addItems(listFileLine);
 	//zoneScroll->setWidget(viewList)
-	
+	viewList->addItems(listFileLine);
 }
 void TableauScore::setVLayout()
 {
