@@ -1,6 +1,6 @@
 #include "parametreJeu.h"
 #include <QLabel>
-#include <QFontDataBase>
+
 
 ParametreJeu::ParametreJeu()
 {
@@ -31,8 +31,7 @@ void ParametreJeu::setButton()
 void ParametreJeu::setHlayout()
 {
 	/*Configuration du font*/
-	QFontDatabase database;
-	database.addApplicationFont("lib//fonts//ShowcardGothic.ttf");
+	
 	QFont font = QFont("Showcard Gothic");
 	font.setPointSize(20);
 
