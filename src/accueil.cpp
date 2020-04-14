@@ -13,16 +13,12 @@ void Accueil::setButtons()
 	jouerBtn->setIcon(QIcon("res//play_icon.png"));
 	jouerBtn->setIconSize(QSize(200, 50));
 	jouerBtn->setMinimumSize(QSize(100, 60));
-	
-
-
 
 	tableauScoreBtn = new QPushButton();
 	tableauScoreBtn->setIcon(QIcon("res//icone_tableau_des_scores.png"));
 	tableauScoreBtn->setIconSize(QSize(300, 225));
 	tableauScoreBtn->setMinimumSize(QSize(100, 60));
 	tableauScoreBtn->setMaximumSize(QSize(325, 225));
-
 
 	parametreBtn = new QPushButton();
 	parametreBtn->setIcon(QIcon("res//icone_parametre.png"));
@@ -46,7 +42,6 @@ void Accueil::setVLayout()
 	vlayout->addWidget(parametreBtn);
 	vlayout->addWidget(quitterBtn);
 	vlayout->setMargin(400);
-	
 }
 
 void Accueil::setWindow()
