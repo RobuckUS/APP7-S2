@@ -5,6 +5,7 @@
 
 TableauJeu::TableauJeu()
 {
+	
 
 	length = 7;
 	height = 6;
@@ -19,6 +20,7 @@ TableauJeu::TableauJeu()
 
 
 	setupBoard();
+	setFocus();
 }
 
 TableauJeu::TableauJeu(int l, int h, int wWindow, int hWindow)
@@ -55,6 +57,7 @@ TableauJeu::TableauJeu(int l, int h, int wWindow, int hWindow, Player p1, Player
 
 void TableauJeu::keyPressEvent(QKeyEvent * ev)
 {
+
 	if (ev->key() == Qt::Key_Left)
 	{
 		if (enJeu->x() > 0)
@@ -64,7 +67,7 @@ void TableauJeu::keyPressEvent(QKeyEvent * ev)
 	}
 	else if (ev->key() == Qt::Key_Right)
 	{
-		if (enJeu->x() < (length-1) * rayon)
+		if (enJeu->x() < (length - 1) * rayon)
 		{
 			enJeu->moveRight(rayon);
 		}
@@ -84,8 +87,10 @@ void TableauJeu::keyPressEvent(QKeyEvent * ev)
 				pLost = p1;
 			}
 			emit(winnerSignal(winner(), pLost));
+			
 		}
 	}
+	
 }
 
 void TableauJeu::setupBoard()

@@ -24,12 +24,8 @@ void Parametre::setButtons()
 	pleinEcranBtn->setMinimumSize(QSize(100, 60));
 	pleinEcranBtn->setMaximumSize(QSize(325, 225));
 
-	volumeEffetSlider = new QSlider(Qt::Horizontal);
-	volumeEffetSlider->setValue(100);
-	
 
 	/*Configuration du slider de volume pour le bouton de musique*/
-	volumeEffetSlider->setMaximumSize(QSize(300, 50));
 	volumeMusiqueSlider = new QSlider(Qt::Horizontal);
 	volumeMusiqueSlider->setMaximumSize(QSize(300, 50));
 	volumeMusiqueSlider->setValue(100);
@@ -90,7 +86,6 @@ void Parametre::setVLayout()
 
 	vlayout->addWidget(musiqueBtn);
 	vlayout->addWidget(volumeMusiqueSlider);
-	vlayout->addWidget(volumeEffetSlider);
 	
 	vlayout->addWidget(retourBtn);
 }

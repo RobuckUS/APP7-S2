@@ -47,11 +47,11 @@ void ParametreJeu::setHlayout()
 
 	/*QTextEdit pour les noms*/
 	txtNom1 = new QLineEdit();
-	txtNom1->setFixedSize(250, 30);
+	txtNom1->setFixedSize(250, 40);
 	txtNom1->setMaximumWidth(250);
 	txtNom1->setFont(font);
 	txtNom2 = new QLineEdit();
-	txtNom2->setFixedSize(250, 30);
+	txtNom2->setFixedSize(250, 40);
 	txtNom2->setMaximumWidth(250);
 	txtNom2->setFont(font);
 	

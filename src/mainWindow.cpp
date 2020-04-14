@@ -111,8 +111,18 @@ void MainWindow::setTableauScore()
 
 void MainWindow::setTableauJeu1()
 {
-	Player p1 = Player(parametreJeu->txtNom2->text().toStdString(), player1);
-	Player p2 = Player(parametreJeu->txtNom1->text().toStdString(), player2);
+	
+	string name1 = parametreJeu->txtNom2->text().toStdString();
+	for (int i = 0; i < name1.length(); ++i)
+		name1[i]=toupper(name1[i]);
+
+	string name2 = parametreJeu->txtNom1->text().toStdString();
+	for (int i = 0; i < name2.length(); ++i)
+		name2[i] = toupper(name2[i]);
+	
+	
+	Player p1 = Player(name1, player1);
+	Player p2 = Player(name2, player2);
 
 
 	parametreJeu->setValues();
@@ -175,6 +185,7 @@ void MainWindow::setWinner(Player pWin, Player pLost)
 		connect(tableauJeu->timer, SIGNAL(finished()), this, SLOT(backgroundTrumpWin()));
 
 	}
+	
 	
 	cout << "Winner" << pWin.getName() << endl;
 	cout << "Looser" << pLost.getName() << endl;

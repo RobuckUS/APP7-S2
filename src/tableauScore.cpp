@@ -7,7 +7,18 @@
 
 TableauScore::TableauScore()
 {
+	QFont font = QFont("Showcard Gothic");
+	font.setPointSize(20);
+
 	viewList = new QListWidget(this);
+	viewList->setFont(font);
+	viewList->setFixedSize(QSize(600, 200));
+	viewList->setStyleSheet("QListView{ \
+								background-color: rgba(255,255,255, 0); \
+								border-top: 0px solid rgb(40,40,40); min - width:133px; \
+								margin:0px; \
+		}");
+
 	setButtons();
 	showScore();
 
@@ -23,7 +34,7 @@ void TableauScore::setButtons()
 }
 void TableauScore::showScore()
 {
-	
+	viewList->clear();
 	listFileLine.clear();
 
 	QFile file("res//Score.txt");
@@ -41,25 +52,20 @@ void TableauScore::showScore()
 	for (int i = 0; i < listFileLine.length(); i++)
 	{
 		splitFileLine = listFileLine[i].split(" ");
+		QString line =  QString(splitFileLine[0] + "\t" + splitFileLine[1] + "\t" + splitFileLine[2]);
 		/*QLabel* name = new QLabel(splitFileLine[0]);
 		QLabel* win = new QLabel(splitFileLine[1]);
-		QLabel* loss = new QLabel(splitFileLine[2]);
-		hlayoutList->addWidget(name);
-		hlayoutList->addWidget(win);
-		hlayoutList->addWidget(loss);*/
-		//viewList->addItems(listFileLine);
+		QLabel* loss = new QLabel(splitFileLine[2]);*/
+		
+		viewList->addItem(line);
 	}
-	//zoneScroll = new QScrollArea;
-	//viewList->addItems(listFileLine);
-	//zoneScroll->setWidget(viewList)
-	viewList->addItems(listFileLine);
+	/*viewList->addItems(listFileLine);*/
 }
 void TableauScore::setVLayout()
 {
 	vlayout = new QVBoxLayout();
 	vlayout->setSpacing(100);
 	vlayout->setAlignment(Qt::AlignCenter);
-	vlayout->setMargin(300);
 
 	hlayoutList = new QHBoxLayout();
 
@@ -77,4 +83,5 @@ void TableauScore::setVLayout()
 void TableauScore::setWindow()
 {
 	this->setLayout(vlayout);
+	this->setContentsMargins(QMargins(430, 250, 440, 200));
 }
