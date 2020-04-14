@@ -19,15 +19,11 @@ void Parametre::setButtons()
 
 
 
-	pleinEcranBtn = new QPushButton("Plein Ecran");
-	pleinEcranBtn->setIconSize(QSize(300, 225));
-	pleinEcranBtn->setMinimumSize(QSize(100, 60));
-	pleinEcranBtn->setMaximumSize(QSize(325, 225));
 
 
 	/*Configuration du slider de volume pour le bouton de musique*/
 	volumeMusiqueSlider = new QSlider(Qt::Horizontal);
-	volumeMusiqueSlider->setMaximumSize(QSize(300, 50));
+	volumeMusiqueSlider->setMaximumSize(QSize(220, 50));
 	volumeMusiqueSlider->setValue(100);
 	connect(volumeMusiqueSlider, SIGNAL(valueChanged(int)), this, SLOT(musiqueBtnAdjust(int))); //	/*Adjuster le bouton de musique en fonction du volume choisi*/
 
@@ -57,13 +53,7 @@ void Parametre::setMusiqueBtn()
 }
 
 
-void Parametre::setPleinEcranBtn()
-{
-	if (pleinEcranBtn->text() == "Plein Ecran")
-		pleinEcranBtn->setText("Ecran fenetree");
-	else
-		pleinEcranBtn->setText("Plein Ecran");
-}
+
 
 void Parametre::musiqueBtnAdjust(int volume)
 {
@@ -80,13 +70,12 @@ void Parametre::musiqueBtnAdjust(int volume)
 void Parametre::setVLayout()
 {
 	vlayout = new QVBoxLayout();
-	vlayout->setSpacing(100);
 	vlayout->setAlignment(Qt::AlignCenter);
 	vlayout->setMargin(300);
 
 	vlayout->addWidget(musiqueBtn);
 	vlayout->addWidget(volumeMusiqueSlider);
-	
+	vlayout->addSpacing(100);
 	vlayout->addWidget(retourBtn);
 }
 

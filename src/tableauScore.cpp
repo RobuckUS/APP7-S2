@@ -51,8 +51,16 @@ void TableauScore::showScore()
 	//Affichage de la liste
 	for (int i = 0; i < listFileLine.length(); i++)
 	{
+		QString line;
 		splitFileLine = listFileLine[i].split(" ");
-		QString line =  QString(splitFileLine[0] + "\t" + splitFileLine[1] + "\t" + splitFileLine[2]);
+		if (splitFileLine[0].length() < 5)
+		{
+			line = QString(splitFileLine[0] + "\t\t\t" + splitFileLine[1] + "\t\t" + splitFileLine[2]);
+		}
+		else
+		{
+			line = QString(splitFileLine[0] + "\t\t" + splitFileLine[1] + "\t\t" + splitFileLine[2]);
+		}
 		/*QLabel* name = new QLabel(splitFileLine[0]);
 		QLabel* win = new QLabel(splitFileLine[1]);
 		QLabel* loss = new QLabel(splitFileLine[2]);*/
