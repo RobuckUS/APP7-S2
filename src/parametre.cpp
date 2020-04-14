@@ -16,7 +16,7 @@ void Parametre::setButtons()
 	musiqueBtn->setIconSize(QSize(200, 75));
 	musiqueBtn->setMinimumSize(QSize(100, 60));
 	musiqueBtn->setMaximumSize(QSize(220, 100));
-	
+
 
 
 	pleinEcranBtn = new QPushButton("Plein Ecran");

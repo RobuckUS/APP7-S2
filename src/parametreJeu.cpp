@@ -50,12 +50,15 @@ void ParametreJeu::setHlayout()
 	txtNom1->setFixedSize(250, 40);
 	txtNom1->setMaximumWidth(250);
 	txtNom1->setFont(font);
+	txtNom1->setMaxLength(6);
+	txtNom1->setText("P1");
+
 	txtNom2 = new QLineEdit();
 	txtNom2->setFixedSize(250, 40);
 	txtNom2->setMaximumWidth(250);
 	txtNom2->setFont(font);
-	
-	
+	txtNom2->setMaxLength(6);
+	txtNom2->setText("P2");
 	/*Fonction pour les QSpinBox pour la taille du tableau*/
 	largeur = new QSpinBox();
 	largeur->setRange(6,MaxSize);

@@ -63,25 +63,26 @@ void TableauScore::showScore()
 }
 void TableauScore::setVLayout()
 {
+	QFont font = QFont("Showcard Gothic");
+	font.setPointSize(20);
+	QLabel *lbl = new QLabel("Nom\tGagne\tPerdu");
+	lbl->setFont(font);
+
 	vlayout = new QVBoxLayout();
-	vlayout->setSpacing(100);
 	vlayout->setAlignment(Qt::AlignCenter);
 
-	hlayoutList = new QHBoxLayout();
 
-	//Read file
-	//sowScore();
-	//viewList->addItems(listFileLine);
+	vlayout->addWidget(lbl);
 	vlayout->addWidget(viewList);
-	//vlayout->addWidget(zoneScroll);
-
+	vlayout->addSpacing(75);
 	vlayout->addWidget(retourBtn);
-
-	//vlayout->addWidget(vlayout);
 	setWindow();
 }
 void TableauScore::setWindow()
 {
+	
+	
+
 	this->setLayout(vlayout);
 	this->setContentsMargins(QMargins(430, 250, 440, 200));
 }
