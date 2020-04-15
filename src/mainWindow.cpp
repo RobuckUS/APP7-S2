@@ -77,7 +77,7 @@ void MainWindow::setBackgroundMusique()
 	
 	backgroundMusique = new QMediaPlayer();
 	backgroundMusique->setMedia(playlist);
-	
+	backgroundMusique->play();
 }
 
 
@@ -169,7 +169,7 @@ void MainWindow::setWinner(Player pWin, Player pLost)
 		winner.setText("The mexicans won!");
 		winnerList->addMedia(QUrl("res//snd//MX-victory.mp3"));
 		backgroundMusique->setPlaylist(winnerList);
-		
+		backgroundMusique->play();
 		tableauJeu->animationMexicain();
 		connect(tableauJeu->timer, SIGNAL(finished()), this, SLOT(backgroundMexicanWin()));
 
@@ -180,7 +180,7 @@ void MainWindow::setWinner(Player pWin, Player pLost)
 		winner.setText("The americans won!");
 		winnerList->addMedia(QUrl("res//snd//US-victory.mp3"));
 		backgroundMusique->setPlaylist(winnerList);
-		
+		backgroundMusique->play();
 		setBackground("res//img//background//BG-US-anim.png");
 		tableauJeu->animationTrump();
 		connect(tableauJeu->timer, SIGNAL(finished()), this, SLOT(backgroundTrumpWin()));
@@ -317,7 +317,7 @@ void MainWindow::retourAccueil()
 
 
 	backgroundMusique->setMedia(playlist);
-	
+	backgroundMusique->play();
 }
 
 void MainWindow::rejouer()
@@ -330,6 +330,6 @@ void MainWindow::rejouer()
 
 
 	backgroundMusique->setMedia(playlist);
-	
+	backgroundMusique->play();
 
 }
