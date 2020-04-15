@@ -188,8 +188,6 @@ void MainWindow::setWinner(Player pWin, Player pLost)
 	}
 	
 	
-	cout << "Winner" << pWin.getName() << endl;
-	cout << "Looser" << pLost.getName() << endl;
 	emit(winnerSignal(pWin, pLost));
 
 	//File structure

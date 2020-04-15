@@ -35,7 +35,6 @@ void ParametreJeu::setHlayout()
 	
 	QFont font = QFont("Showcard Gothic");
 	font.setPointSize(20 );
-	cout << size().width();
 
 	/*Configurations Labels*/
 	labelH = new QLabel("Hauteur:");
