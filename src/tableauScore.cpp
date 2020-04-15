@@ -30,14 +30,14 @@ void TableauScore::setButtons()
 	retourBtn = new QPushButton();
 	retourBtn->setIconSize(QSize(200, 50));
 	retourBtn->setMinimumSize(QSize(120, 72));
-	retourBtn->setIcon(QIcon("res//fleche_retour_icone.png"));
+	retourBtn->setIcon(QIcon("res//img//button//fleche_retour_icone.png"));
 }
 void TableauScore::showScore()
 {
 	viewList->clear();
 	listFileLine.clear();
 
-	QFile file("res//Score.txt");
+	QFile file("res//score.txt");
 	QTextStream instream(&file);
 
 	//Lire dans le fichier et remplir une liste pour chaque line du fichier

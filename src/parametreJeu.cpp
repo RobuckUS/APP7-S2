@@ -14,14 +14,14 @@ ParametreJeu::ParametreJeu()
 void ParametreJeu::setButton()
 {
 	deuxJoueurs = new QPushButton();
-	deuxJoueurs->setIcon(QIcon("res//play_icon.png"));
+	deuxJoueurs->setIcon(QIcon("res//img//button//play_icon.png"));
 	deuxJoueurs->setIconSize(QSize(200, 50));
 	deuxJoueurs->setMinimumSize(QSize(60, 36));
 	deuxJoueurs->setMaximumWidth(200);
 
 
 	jeuretourbtn = new QPushButton();
-	jeuretourbtn->setIcon(QIcon("res//fleche_retour_icone.png"));
+	jeuretourbtn->setIcon(QIcon("res//img//button//fleche_retour_icone.png"));
 	jeuretourbtn->setIconSize(QSize(200, 50));
 	jeuretourbtn->setMinimumSize(QSize(60, 36));
 	jeuretourbtn->setMaximumWidth(200);

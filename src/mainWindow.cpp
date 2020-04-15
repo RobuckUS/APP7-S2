@@ -18,7 +18,7 @@ MainWindow::MainWindow()
 	int y = (availableSize.height() - winh) / 2 - 50;
 	move(x, y);
 	this->setFixedSize(winl, winh);
-	setBackground("res//BackGroundFinale.png");
+	setBackground("res//img//background//accueil.png");
 	accueil = new Accueil();
 	parametre = new Parametre();
 	parametreJeu = new ParametreJeu();
@@ -77,13 +77,13 @@ void MainWindow::setBackgroundMusique()
 	
 	backgroundMusique = new QMediaPlayer();
 	backgroundMusique->setMedia(playlist);
-	backgroundMusique->play();
+	
 }
 
 
 void MainWindow::setParametreJeu()
 {
-	setBackground("res//BackGroundDesert.jpg");
+	setBackground("res//img//background//jeu.jpg");
 	QWidget* savedWidget = this->centralWidget();
 	savedWidget->setParent(0);
 	this->setCentralWidget(parametreJeu);
@@ -100,7 +100,7 @@ void MainWindow::retourMenu()
 	QWidget* savedWidget = this->centralWidget();
 	savedWidget->setParent(0);
 	this->setCentralWidget(accueil);
-	setBackground("res//BackGroundFinale.png");
+	setBackground("res//img//background//accueil.png");
 }
 
 //add
@@ -169,7 +169,7 @@ void MainWindow::setWinner(Player pWin, Player pLost)
 		winner.setText("The mexicans won!");
 		winnerList->addMedia(QUrl("res//snd//MX-victory.mp3"));
 		backgroundMusique->setPlaylist(winnerList);
-		backgroundMusique->play();
+		
 		tableauJeu->animationMexicain();
 		connect(tableauJeu->timer, SIGNAL(finished()), this, SLOT(backgroundMexicanWin()));
 
@@ -180,8 +180,8 @@ void MainWindow::setWinner(Player pWin, Player pLost)
 		winner.setText("The americans won!");
 		winnerList->addMedia(QUrl("res//snd//US-victory.mp3"));
 		backgroundMusique->setPlaylist(winnerList);
-		backgroundMusique->play();
-		setBackground("res//fond_briques.png");
+		
+		setBackground("res//img//background//BG-US-anim.png");
 		tableauJeu->animationTrump();
 		connect(tableauJeu->timer, SIGNAL(finished()), this, SLOT(backgroundTrumpWin()));
 
@@ -208,7 +208,7 @@ void MainWindow::setWinner(Player pWin, Player pLost)
 	bool winnerExist = false;
 	bool loserExist = false;
 
-	QFile file("res//Score.txt");
+	QFile file("res//score.txt");
 	QTextStream instream(&file);
 
 	//Lire dans le fichier et remplir une liste pour chaque line du fichier
@@ -265,12 +265,12 @@ void MainWindow::setWinner(Player pWin, Player pLost)
 
 void MainWindow::backgroundMexicanWin()
 {
-	this->setBackground("res//bakground_mexican_win.png");
+	this->setBackground("res//img//background//BG-MX-win.png");
 }
 
 void MainWindow::backgroundTrumpWin()
 {
-	this->setBackground("res//backgroundtrumpmur.png");
+	this->setBackground("res//img//background//BG-US-win.png");
 
 }
 
@@ -286,11 +286,11 @@ void MainWindow::gestionFinPartie()
 {
 	/*Boutons*/
 	QPushButton *rejouer = new QPushButton();
-	rejouer->setIcon(QIcon("res//icone_rejouer.png"));
+	rejouer->setIcon(QIcon("res//img//button//icone_rejouer.png"));
 	rejouer->setIconSize(QSize(200, 50));
 	rejouer->setFixedSize(QSize(325, 100));
 	QPushButton *retourAccueil = new QPushButton();
-	retourAccueil->setIcon(QIcon("res//fleche_retour_accueil.png"));
+	retourAccueil->setIcon(QIcon("res//img//button//fleche_retour_accueil.png"));
 	retourAccueil->setIconSize(QSize(200, 50));
 	retourAccueil->setFixedSize(QSize(325, 100));
 
@@ -310,19 +310,19 @@ void MainWindow::gestionFinPartie()
 void MainWindow::retourAccueil()
 {
 	setCentralWidget(accueil);
-	setBackground("res//BackGroundFinale.png");
+	setBackground("res//img//background//accueil.png");
 	QMediaPlaylist *playlist = new QMediaPlaylist();
 	playlist->addMedia(QUrl("res//snd//US-menu.mp3"));
 	playlist->setPlaybackMode(QMediaPlaylist::Loop);
 
 
 	backgroundMusique->setMedia(playlist);
-	backgroundMusique->play();
+	
 }
 
 void MainWindow::rejouer()
 {
-	setBackground("res//BackGroundDesert.jpg");
+	setBackground("res//img//background//jeu.jpg");
 	setTableauJeu1();
 	QMediaPlaylist *playlist = new QMediaPlaylist();
 	playlist->addMedia(QUrl("res//snd//US-menu.mp3"));
@@ -330,6 +330,6 @@ void MainWindow::rejouer()
 
 
 	backgroundMusique->setMedia(playlist);
-	backgroundMusique->play();
+	
 
 }

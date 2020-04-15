@@ -1,2 +1,4 @@
 P1 8 4
 P2 4 8
+TRUMP 0 8
+SENOR 8 0

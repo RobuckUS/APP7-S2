@@ -17,6 +17,18 @@ Need help with `git`? Look at thoses [useful `git` commands](/CONTRIBUTING.md).
 
 ## File structure
 
-- `src/` (contain all `.cpp` and `.h` source files)
-- `res/img/` (contain all *graphics* resources)
-- `res/snd/` (contain all *sounds* resources)
+- `lib/fonts/` (fonts)
+- `src/` (`.cpp` and `.h` source files)
+- `res/img/` (resources)
+  - `res/img/` (graphics)
+    - `res/img/background` (backgrounds and animations)
+	- `res/img/button` (buttons)
+	- `res/img/token` (tokens)
+  - `res/snd/` (sounds)
+
+## Abreviation
+
+Some abbreviation are uses in the filename
+
+- **BG**: Background
+- **FG**: Foreground

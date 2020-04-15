@@ -12,7 +12,7 @@ void Parametre::setButtons()
 {
 	musiqueBtn = new QPushButton();
 	connect(musiqueBtn, SIGNAL(released()), this, SLOT(setMusiqueBtn()));
-	musiqueBtn->setIcon(QIcon("res//icone_musique_on.png"));
+	musiqueBtn->setIcon(QIcon("res//img//button//icone_musique_on.png"));
 	musiqueBtn->setIconSize(QSize(200, 75));
 	musiqueBtn->setMinimumSize(QSize(100, 60));
 	musiqueBtn->setMaximumWidth(300);
@@ -35,20 +35,20 @@ void Parametre::setButtons()
 	retourBtn->setIconSize(QSize(200, 50));
 	retourBtn->setMinimumSize(QSize(100, 60));
 	retourBtn->setMaximumWidth(300);
-	retourBtn->setIcon(QIcon("res//fleche_retour_icone.png"));
+	retourBtn->setIcon(QIcon("res//img//button//fleche_retour_icone.png"));
 }
 
 void Parametre::setMusiqueBtn()
 {
 	if (musique)
 	{
-		musiqueBtn->setIcon(QIcon("res//icone_musique_off.png"));
+		musiqueBtn->setIcon(QIcon("res//img//button//icone_musique_off.png"));
 		volumeMusiqueSlider->setValue(0);
 		musique = false;
 	}
 	else
 	{
-		musiqueBtn->setIcon(QIcon("res//icone_musique_on.png"));
+		musiqueBtn->setIcon(QIcon("res//img//button//icone_musique_on.png"));
 		volumeMusiqueSlider->setValue(100);
 		musique = true;
 	}
@@ -61,11 +61,11 @@ void Parametre::musiqueBtnAdjust(int volume)
 {
 	if (volume == 0)
 	{
-		musiqueBtn->setIcon(QIcon("res//icone_musique_off.png"));
+		musiqueBtn->setIcon(QIcon("res//img//button//icone_musique_off.png"));
 	}
 	else
 	{
-		musiqueBtn->setIcon(QIcon("res//icone_musique_on.png"));
+		musiqueBtn->setIcon(QIcon("res//img//button//icone_musique_on.png"));
 	}
 }
 

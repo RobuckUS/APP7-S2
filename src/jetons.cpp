@@ -17,7 +17,7 @@ Jetons::Jetons(int x, int y, int r, Player p) : QGraphicsEllipseItem(x, y, r, r)
 	else if (player.getPlayerType() == player1)
 	{
 		QBrush brush;
-		brush.setTextureImage(QImage("res//MX-thumbnail-256.png").scaled(rayon, rayon));
+		brush.setTextureImage(QImage("res//img//token//MX-256.png").scaled(rayon, rayon));
 
 		QTransform transform;
 		transform.translate(x, y);
@@ -28,7 +28,7 @@ Jetons::Jetons(int x, int y, int r, Player p) : QGraphicsEllipseItem(x, y, r, r)
 	else if (player.getPlayerType() == player2)
 	{
 		QBrush brush;
-		brush.setTextureImage(QImage("res//US-thumbnail-256.png").scaled(rayon, rayon));
+		brush.setTextureImage(QImage("res//img//token//US-256.png").scaled(rayon, rayon));
 		
 		QTransform transform;
 		transform.translate(x, y);
@@ -63,7 +63,7 @@ void Jetons::setPlayer(Player p)
 	else if (player.getPlayerType() == player1)
 	{
 		QBrush brush;
-		brush.setTextureImage(QImage("res//MX-thumbnail-256.png").scaled(rayon, rayon));
+		brush.setTextureImage(QImage("res//img//token//MX-256.png").scaled(rayon, rayon));
 
 		QTransform transform;
 		transform.translate(xPos, yPos);
@@ -74,7 +74,7 @@ void Jetons::setPlayer(Player p)
 	else if (player.getPlayerType() == player2)
 	{
 		QBrush brush;
-		brush.setTextureImage(QImage("res//US-thumbnail-256.png").scaled(rayon, rayon));
+		brush.setTextureImage(QImage("res//img//token//US-256.png").scaled(rayon, rayon));
 
 		QTransform transform;
 		transform.translate(xPos, yPos);

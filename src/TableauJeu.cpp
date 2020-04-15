@@ -98,7 +98,7 @@ void TableauJeu::keyPressEvent(QKeyEvent * ev)
 
 void TableauJeu::setupBoard()
 {
-	imageFond = new QImage("res//util-cache-border-256.png");
+	imageFond = new QImage("res//img//token//empty-cache-256.png");
   	tableau = new Jetons **[length];
 	fond = new QGraphicsPixmapItem**[length];
 	for (int i = 0; i < length; i++)
@@ -221,7 +221,7 @@ void TableauJeu::animationMexicain()
 {
 	animation = new QGraphicsItemAnimation;
 	
-	QGraphicsPixmapItem *mexican = new QGraphicsPixmapItem(QPixmap("res//the_mexican.png"));
+	QGraphicsPixmapItem *mexican = new QGraphicsPixmapItem(QPixmap("res//img//background//FG-MX-anim.png"));
 	timer = new QTimeLine(4000);
 	timer->setFrameRange(0, 100);
 
@@ -243,7 +243,7 @@ void TableauJeu::animationMexicain()
 void TableauJeu::animationTrump()
 {
 	animation = new QGraphicsItemAnimation;
-	QGraphicsPixmapItem *trump = new QGraphicsPixmapItem(QPixmap("res//trump_tournant.png"));
+	QGraphicsPixmapItem *trump = new QGraphicsPixmapItem(QPixmap("res//img//background//FG-US-anim.png"));
 
 	timer = new QTimeLine(4000);
 	animation->setItem(trump);
