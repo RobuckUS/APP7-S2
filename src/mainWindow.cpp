@@ -324,6 +324,7 @@ void MainWindow::retourAccueil()
 
 void MainWindow::rejouer()
 {
+	setBackground("res//BackGroundDesert.jpg");
 	setTableauJeu1();
 	QMediaPlaylist *playlist = new QMediaPlaylist();
 	playlist->addMedia(QUrl("res//snd//US-menu.mp3"));
