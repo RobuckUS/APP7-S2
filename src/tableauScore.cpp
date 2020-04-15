@@ -12,7 +12,8 @@ TableauScore::TableauScore()
 
 	viewList = new QListWidget(this);
 	viewList->setFont(font);
-	viewList->setFixedSize(QSize(600, 200));
+	viewList->setMinimumSize(300, 100);
+	viewList->setMaximumSize(500, 125);
 	viewList->setStyleSheet("QListView{ \
 								background-color: rgba(255,255,255, 0); \
 								border-top: 0px solid rgb(40,40,40); min - width:133px; \
@@ -28,8 +29,7 @@ void TableauScore::setButtons()
 {
 	retourBtn = new QPushButton();
 	retourBtn->setIconSize(QSize(200, 50));
-	retourBtn->setMinimumSize(QSize(100, 60));
-	retourBtn->setMaximumSize(QSize(220, 100));
+	retourBtn->setMinimumSize(QSize(120, 72));
 	retourBtn->setIcon(QIcon("res//fleche_retour_icone.png"));
 }
 void TableauScore::showScore()
@@ -77,13 +77,13 @@ void TableauScore::setVLayout()
 	lbl->setFont(font);
 
 	vlayout = new QVBoxLayout();
+	vlayout->setMargin(200);
+
 	vlayout->setAlignment(Qt::AlignCenter);
-
-
-	vlayout->addWidget(lbl);
-	vlayout->addWidget(viewList);
+	vlayout->addWidget(lbl, Qt::AlignCenter);
+	vlayout->addWidget(viewList, Qt::AlignCenter);
 	vlayout->addSpacing(75);
-	vlayout->addWidget(retourBtn);
+	vlayout->addWidget(retourBtn, Qt::AlignCenter);
 	setWindow();
 }
 void TableauScore::setWindow()
@@ -92,5 +92,5 @@ void TableauScore::setWindow()
 	
 
 	this->setLayout(vlayout);
-	this->setContentsMargins(QMargins(430, 250, 440, 200));
+	
 }

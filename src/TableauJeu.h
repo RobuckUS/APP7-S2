@@ -39,7 +39,6 @@ private:
 	int height;
 	int rayon;
 	double lengthWindow;
-	
 
 	Player p1;
 	Player p2;

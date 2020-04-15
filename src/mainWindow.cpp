@@ -83,6 +83,7 @@ void MainWindow::setBackgroundMusique()
 
 void MainWindow::setParametreJeu()
 {
+	setBackground("res//BackGroundDesert.jpg");
 	QWidget* savedWidget = this->centralWidget();
 	savedWidget->setParent(0);
 	this->setCentralWidget(parametreJeu);
@@ -99,6 +100,7 @@ void MainWindow::retourMenu()
 	QWidget* savedWidget = this->centralWidget();
 	savedWidget->setParent(0);
 	this->setCentralWidget(accueil);
+	setBackground("res//BackGroundFinale.png");
 }
 
 //add
@@ -132,7 +134,6 @@ void MainWindow::setTableauJeu1()
 	QWidget* savedWidget = this->centralWidget();
 	savedWidget->setParent(0);
 	QGraphicsView *view = new QGraphicsView(tableauJeu);
-	setBackground("res//BackGroundDesert.jpg");
 	view->setStyleSheet("background: transparent");
 	this->setCentralWidget(view);
 	connect(tableauJeu, SIGNAL(winnerSignal(Player, Player)), this, SLOT(setWinner(Player, Player)));

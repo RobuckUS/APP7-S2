@@ -11,37 +11,34 @@ void Accueil::setButtons()
 {
 	jouerBtn = new QPushButton();
 	jouerBtn->setIcon(QIcon("res//play_icon.png"));
+	jouerBtn->setMinimumSize(QSize(120, 72));
 	jouerBtn->setIconSize(QSize(200, 50));
-	jouerBtn->setMinimumSize(QSize(100, 60));
 
 	tableauScoreBtn = new QPushButton();
 	tableauScoreBtn->setIcon(QIcon("res//icone_tableau_des_scores.png"));
-	tableauScoreBtn->setIconSize(QSize(300, 225));
-	tableauScoreBtn->setMinimumSize(QSize(100, 60));
-	tableauScoreBtn->setMaximumSize(QSize(325, 225));
+	tableauScoreBtn->setIconSize(QSize(200, 50));
+	tableauScoreBtn->setMinimumSize(QSize(120, 72));
 
 	parametreBtn = new QPushButton();
 	parametreBtn->setIcon(QIcon("res//icone_parametre.png"));
 	parametreBtn->setIconSize(QSize(200, 50));
-	parametreBtn->setMinimumSize(QSize(100, 60));
+	parametreBtn->setMinimumSize(QSize(120, 72));
 
 	quitterBtn = new QPushButton();
 	quitterBtn->setIcon(QIcon("res//quit_icon.png"));
 	quitterBtn->setIconSize(QSize(200, 50));
-	quitterBtn->setMinimumSize(QSize(100, 60));
+	quitterBtn->setMinimumSize(QSize(120, 72));
 }
 
 void Accueil::setVLayout()
 {
 	vlayout = new QVBoxLayout();
-	vlayout->setSpacing(100);
 	vlayout->setAlignment(Qt::AlignCenter);
 
-	vlayout->addWidget(jouerBtn);
-	vlayout->addWidget(tableauScoreBtn);
-	vlayout->addWidget(parametreBtn);
-	vlayout->addWidget(quitterBtn);
-	vlayout->setMargin(400);
+	vlayout->addWidget(jouerBtn, Qt::AlignCenter);
+	vlayout->addWidget(tableauScoreBtn, Qt::AlignCenter);
+	vlayout->addWidget(parametreBtn, Qt::AlignCenter);
+	vlayout->addWidget(quitterBtn, Qt::AlignCenter);
 }
 
 void Accueil::setWindow()

@@ -33,7 +33,6 @@ TableauJeu::TableauJeu(int l, int h, int wWindow, int hWindow)
 	p1 = Player("Player 1", player1);
 	p2 = Player("Player 2", player2);
 	pn = Player("null", playerN);
-
 	enJeu = new Jetons(lengthWindow / 2 - (rayon*length) / 2, 0, rayon, p2);
 	addItem(enJeu);
 	setupBoard();
@@ -49,7 +48,7 @@ TableauJeu::TableauJeu(int l, int h, int wWindow, int hWindow, Player p1, Player
 	this->p1 = p1;
 	this->p2 = p2;
 	pn = Player("null", playerN);
-
+	
 	enJeu = new Jetons(lengthWindow / 2 - (rayon*length) / 2, 0, rayon, this->p2);
 	addItem(enJeu);
 	setupBoard();
@@ -92,6 +91,7 @@ void TableauJeu::keyPressEvent(QKeyEvent * ev)
 	}
 	
 }
+
 
 void TableauJeu::setupBoard()
 {
