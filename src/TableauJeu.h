@@ -46,4 +46,6 @@ private:
 
 	void setupBoard();
 	void enterEvent();
+
+	bool isPlaying;	//Used to disable input when a player win
 };
