@@ -15,23 +15,17 @@ void Parametre::setButtons()
 	musiqueBtn->setIcon(QIcon("res//icone_musique_on.png"));
 	musiqueBtn->setIconSize(QSize(200, 75));
 	musiqueBtn->setMinimumSize(QSize(100, 60));
-	musiqueBtn->setMaximumSize(QSize(220, 100));
-	
+	musiqueBtn->setMaximumWidth(300);
 
 
-	pleinEcranBtn = new QPushButton("Plein Ecran");
-	pleinEcranBtn->setIconSize(QSize(300, 225));
-	pleinEcranBtn->setMinimumSize(QSize(100, 60));
-	pleinEcranBtn->setMaximumSize(QSize(325, 225));
 
-	volumeEffetSlider = new QSlider(Qt::Horizontal);
-	volumeEffetSlider->setValue(100);
-	
+
+
 
 	/*Configuration du slider de volume pour le bouton de musique*/
-	volumeEffetSlider->setMaximumSize(QSize(300, 50));
 	volumeMusiqueSlider = new QSlider(Qt::Horizontal);
-	volumeMusiqueSlider->setMaximumSize(QSize(300, 50));
+	volumeMusiqueSlider->setMinimumSize(QSize(100, 25));
+	volumeMusiqueSlider->setMaximumWidth(300);
 	volumeMusiqueSlider->setValue(100);
 	connect(volumeMusiqueSlider, SIGNAL(valueChanged(int)), this, SLOT(musiqueBtnAdjust(int))); //	/*Adjuster le bouton de musique en fonction du volume choisi*/
 
@@ -40,7 +34,7 @@ void Parametre::setButtons()
 	retourBtn = new QPushButton();
 	retourBtn->setIconSize(QSize(200, 50));
 	retourBtn->setMinimumSize(QSize(100, 60));
-	retourBtn->setMaximumSize(QSize(220, 100));
+	retourBtn->setMaximumWidth(300);
 	retourBtn->setIcon(QIcon("res//fleche_retour_icone.png"));
 }
 
@@ -61,13 +55,7 @@ void Parametre::setMusiqueBtn()
 }
 
 
-void Parametre::setPleinEcranBtn()
-{
-	if (pleinEcranBtn->text() == "Plein Ecran")
-		pleinEcranBtn->setText("Ecran fenetree");
-	else
-		pleinEcranBtn->setText("Plein Ecran");
-}
+
 
 void Parametre::musiqueBtnAdjust(int volume)
 {
@@ -84,15 +72,12 @@ void Parametre::musiqueBtnAdjust(int volume)
 void Parametre::setVLayout()
 {
 	vlayout = new QVBoxLayout();
-	vlayout->setSpacing(100);
 	vlayout->setAlignment(Qt::AlignCenter);
-	vlayout->setMargin(300);
-
-	vlayout->addWidget(musiqueBtn);
-	vlayout->addWidget(volumeMusiqueSlider);
-	vlayout->addWidget(volumeEffetSlider);
 	
-	vlayout->addWidget(retourBtn);
+	vlayout->addWidget(musiqueBtn, Qt::AlignCenter);
+	vlayout->addWidget(volumeMusiqueSlider, Qt::AlignCenter);
+	vlayout->addSpacing(100);
+	vlayout->addWidget(retourBtn, Qt::AlignCenter);
 }
 
 void Parametre::setWindow()

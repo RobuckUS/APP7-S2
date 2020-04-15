@@ -83,6 +83,7 @@ void MainWindow::setBackgroundMusique()
 
 void MainWindow::setParametreJeu()
 {
+	setBackground("res//BackGroundDesert.jpg");
 	QWidget* savedWidget = this->centralWidget();
 	savedWidget->setParent(0);
 	this->setCentralWidget(parametreJeu);
@@ -99,6 +100,7 @@ void MainWindow::retourMenu()
 	QWidget* savedWidget = this->centralWidget();
 	savedWidget->setParent(0);
 	this->setCentralWidget(accueil);
+	setBackground("res//BackGroundFinale.png");
 }
 
 //add
@@ -111,8 +113,18 @@ void MainWindow::setTableauScore()
 
 void MainWindow::setTableauJeu1()
 {
-	Player p1 = Player(parametreJeu->txtNom2->text().toStdString(), player1);
-	Player p2 = Player(parametreJeu->txtNom1->text().toStdString(), player2);
+	
+	string name1 = parametreJeu->txtNom2->text().toStdString();
+	for (int i = 0; i < name1.length(); ++i)
+		name1[i]=toupper(name1[i]);
+
+	string name2 = parametreJeu->txtNom1->text().toStdString();
+	for (int i = 0; i < name2.length(); ++i)
+		name2[i] = toupper(name2[i]);
+	
+	
+	Player p1 = Player(name1, player1);
+	Player p2 = Player(name2, player2);
 
 
 	parametreJeu->setValues();
@@ -122,7 +134,6 @@ void MainWindow::setTableauJeu1()
 	QWidget* savedWidget = this->centralWidget();
 	savedWidget->setParent(0);
 	QGraphicsView *view = new QGraphicsView(tableauJeu);
-	setBackground("res//BackGroundDesert.jpg");
 	view->setStyleSheet("background: transparent");
 	this->setCentralWidget(view);
 	connect(tableauJeu, SIGNAL(winnerSignal(Player, Player)), this, SLOT(setWinner(Player, Player)));
@@ -176,8 +187,7 @@ void MainWindow::setWinner(Player pWin, Player pLost)
 
 	}
 	
-	cout << "Winner" << pWin.getName() << endl;
-	cout << "Looser" << pLost.getName() << endl;
+	
 	emit(winnerSignal(pWin, pLost));
 
 	//File structure
@@ -312,6 +322,7 @@ void MainWindow::retourAccueil()
 
 void MainWindow::rejouer()
 {
+	setBackground("res//BackGroundDesert.jpg");
 	setTableauJeu1();
 	QMediaPlaylist *playlist = new QMediaPlaylist();
 	playlist->addMedia(QUrl("res//snd//US-menu.mp3"));

@@ -10,14 +10,10 @@ class Parametre : public QWidget
 public:
 	Parametre();
 	QPushButton *musiqueBtn;
-	QPushButton *pleinEcranBtn;
 	QPushButton *retourBtn;
 	QSlider *volumeMusiqueSlider;
-	QSlider *volumeEffetSlider;
-	QCheckBox *themeCheckBox;
 public slots:
 	void setMusiqueBtn();
-	void setPleinEcranBtn();
 	void musiqueBtnAdjust(int volume);
 private:
 	QVBoxLayout *vlayout;

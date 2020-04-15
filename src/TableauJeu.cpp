@@ -5,6 +5,7 @@
 
 TableauJeu::TableauJeu()
 {
+	
 
 	length = 7;
 	height = 6;
@@ -19,6 +20,9 @@ TableauJeu::TableauJeu()
 
 
 	setupBoard();
+	setFocus();
+
+	isPlaying = true;
 }
 
 TableauJeu::TableauJeu(int l, int h, int wWindow, int hWindow)
@@ -31,7 +35,6 @@ TableauJeu::TableauJeu(int l, int h, int wWindow, int hWindow)
 	p1 = Player("Player 1", player1);
 	p2 = Player("Player 2", player2);
 	pn = Player("null", playerN);
-
 	enJeu = new Jetons(lengthWindow / 2 - (rayon*length) / 2, 0, rayon, p2);
 	addItem(enJeu);
 	setupBoard();
@@ -47,7 +50,7 @@ TableauJeu::TableauJeu(int l, int h, int wWindow, int hWindow, Player p1, Player
 	this->p1 = p1;
 	this->p2 = p2;
 	pn = Player("null", playerN);
-
+	
 	enJeu = new Jetons(lengthWindow / 2 - (rayon*length) / 2, 0, rayon, this->p2);
 	addItem(enJeu);
 	setupBoard();
@@ -55,38 +58,43 @@ TableauJeu::TableauJeu(int l, int h, int wWindow, int hWindow, Player p1, Player
 
 void TableauJeu::keyPressEvent(QKeyEvent * ev)
 {
-	if (ev->key() == Qt::Key_Left)
+	if (isPlaying)
 	{
-		if (enJeu->x() > 0)
+		if (ev->key() == Qt::Key_Left)
 		{
-			enJeu->moveLeft(rayon);
-		}
-	}
-	else if (ev->key() == Qt::Key_Right)
-	{
-		if (enJeu->x() < (length-1) * rayon)
-		{
-			enJeu->moveRight(rayon);
-		}
-	}
-	else if (ev->key() == Qt::Key_Space)
-	{
-		enterEvent();
-		if (!(winner() == pn))
-		{
-			Player pLost;
-			if (winner() == p1)
+			if (enJeu->x() > 0)
 			{
-				pLost = p2;
+				enJeu->moveLeft(rayon);
 			}
-			else
-			{
-				pLost = p1;
-			}
-			emit(winnerSignal(winner(), pLost));
 		}
-	}
+		else if (ev->key() == Qt::Key_Right)
+		{
+			if (enJeu->x() < (length - 1) * rayon)
+			{
+				enJeu->moveRight(rayon);
+			}
+		}
+		else if (ev->key() == Qt::Key_Space)
+		{
+			enterEvent();
+			if (!(winner() == pn))
+			{
+				isPlaying = false;
+				Player pLost;
+				if (winner() == p1)
+				{
+					pLost = p2;
+				}
+				else
+				{
+					pLost = p1;
+				}
+				emit(winnerSignal(winner(), pLost));
+			}
+		}
+	}	//End of isPlaying
 }
+
 
 void TableauJeu::setupBoard()
 {
@@ -140,7 +148,7 @@ Code pour regarder qui est le gagnant. La methode retourne le nom du gagnant, ou
 */
 Player TableauJeu ::winner()
 {
-	//Vérification de l'horizontale
+	//Vï¿½rification de l'horizontale
 	for (int i = 0; i < length; i++)
 	{
 		for (int j = 0; j < height - 3; j++)
@@ -156,7 +164,7 @@ Player TableauJeu ::winner()
 		}
 	}
 
-	//Vérification du verticale
+	//Vï¿½rification du verticale
 	for (int i = length - 1; i >= 3; i--)
 	{
 		for (int j = 0; j < height; j++)
@@ -172,7 +180,7 @@ Player TableauJeu ::winner()
 		}
 	}
 
-	//Vérification diagonale Haut gauche a en bas droite
+	//Vï¿½rification diagonale Haut gauche a en bas droite
 	for (int i = 0; i < length - 3; i++)
 	{
 		for (int j = 0; j < height - 3; j++)

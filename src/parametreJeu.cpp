@@ -1,5 +1,7 @@
 #include "parametreJeu.h"
+#include <iostream>
 #include <QLabel>
+using namespace std;
 
 ParametreJeu::ParametreJeu()
 {
@@ -14,15 +16,15 @@ void ParametreJeu::setButton()
 	deuxJoueurs = new QPushButton();
 	deuxJoueurs->setIcon(QIcon("res//play_icon.png"));
 	deuxJoueurs->setIconSize(QSize(200, 50));
-	deuxJoueurs->setMinimumSize(QSize(100, 60));
-	deuxJoueurs->setMaximumSize(QSize(325, 100));
+	deuxJoueurs->setMinimumSize(QSize(60, 36));
+	deuxJoueurs->setMaximumWidth(200);
 
 
 	jeuretourbtn = new QPushButton();
 	jeuretourbtn->setIcon(QIcon("res//fleche_retour_icone.png"));
 	jeuretourbtn->setIconSize(QSize(200, 50));
-	jeuretourbtn->setMinimumSize(QSize(100, 60));
-	jeuretourbtn->setMaximumSize(QSize(325, 100));
+	jeuretourbtn->setMinimumSize(QSize(60, 36));
+	jeuretourbtn->setMaximumWidth(200);
 	
 
 }
@@ -30,8 +32,9 @@ void ParametreJeu::setButton()
 void ParametreJeu::setHlayout()
 {
 	/*Configuration du font*/
+	
 	QFont font = QFont("Showcard Gothic");
-	font.setPointSize(20);
+	font.setPointSize(20 );
 
 	/*Configurations Labels*/
 	labelH = new QLabel("Hauteur:");
@@ -45,15 +48,18 @@ void ParametreJeu::setHlayout()
 
 	/*QTextEdit pour les noms*/
 	txtNom1 = new QLineEdit();
-	txtNom1->setFixedSize(250, 30);
-	txtNom1->setMaximumWidth(250);
+	txtNom1->setMinimumSize(62.5, 40);
+	txtNom1->setMaximumWidth(300);
 	txtNom1->setFont(font);
+	txtNom1->setMaxLength(6);
+	txtNom1->setText("P1");
+
 	txtNom2 = new QLineEdit();
-	txtNom2->setFixedSize(250, 30);
-	txtNom2->setMaximumWidth(250);
+	txtNom2->setMinimumSize(62.5, 40);
+	txtNom2->setMaximumWidth(300);
 	txtNom2->setFont(font);
-	
-	
+	txtNom2->setMaxLength(6);
+	txtNom2->setText("P2");
 	/*Fonction pour les QSpinBox pour la taille du tableau*/
 	largeur = new QSpinBox();
 	largeur->setRange(6,MaxSize);
@@ -65,47 +71,47 @@ void ParametreJeu::setHlayout()
 	/*Hlayout pour les noms*/
 	hname = new QHBoxLayout();
 	hname->setSpacing(0);
-	hname->addWidget(lblNameP1);
-	hname->addWidget(txtNom1);
-	hname->addSpacing(30);
-	hname->addWidget(lblNameP2);
-	hname->addWidget(txtNom2);
+	hname->addWidget(lblNameP1, Qt::AlignCenter);
+	hname->addWidget(txtNom1, Qt::AlignCenter);
+	hname->addSpacing(20);
+	hname->addWidget(lblNameP2, Qt::AlignCenter);
+	hname->addWidget(txtNom2, Qt::AlignCenter);
 
 
 	/*Hlayout pour les valeurs*/
 	hlayoutval = new QHBoxLayout();
-	hlayoutval ->addWidget(labelL);
-	hlayoutval->addWidget(largeur);
-	hlayoutval->addWidget(labelH);
-	hlayoutval->addWidget(hauteur);
+	hlayoutval->setSpacing(0);
+	hlayoutval ->addWidget(labelL, Qt::AlignCenter);
+	hlayoutval->addWidget(largeur, Qt::AlignCenter);
+	hlayoutval->addSpacing(20);
+	hlayoutval->addWidget(labelH, Qt::AlignCenter);
+	hlayoutval->addWidget(hauteur, Qt::AlignCenter);
 
 	/*HLayout pour les boutons*/
 	hlayout = new QHBoxLayout();
-	hlayout->addWidget(jeuretourbtn);
-	hlayout->addWidget(deuxJoueurs);
+	hlayout->addWidget(jeuretourbtn, Qt::AlignCenter);
+	hlayout->addWidget(deuxJoueurs, Qt::AlignCenter);
 	
 }
 
 void ParametreJeu::setVLayout()
 {
 	vlayout = new QVBoxLayout();
-	vlayout->addWidget(new QLabel(""));
 	vlayout->setAlignment(Qt::AlignCenter);
-	vlayout->setSpacing(20);
+	
 
 
 	/*Ajout des layout au hlayout*/
-	vlayout->addLayout(hname);
-	vlayout->addLayout(hlayoutval);
-	vlayout->addLayout(hlayout);
-	vlayout->addWidget(jeuretourbtn);
+	vlayout->addLayout(hname, Qt::AlignHCenter);
+	vlayout->addLayout(hlayoutval, Qt::AlignCenter);
+	vlayout->addLayout(hlayout, Qt::AlignCenter);
+	vlayout->addWidget(jeuretourbtn, Qt::AlignCenter);
 	
 }
 
 void ParametreJeu::setWindow()
 {
-	
-	vlayout->setContentsMargins(QMargins(430, 250, 440, 200));
+	vlayout->setContentsMargins(200, 0, 200, 0);
 	setLayout(vlayout);
 	
 }

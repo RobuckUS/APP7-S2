@@ -6,3 +6,5 @@ DEFINES += QT_DEPRECATED_WARNINGS
 HEADERS += src\*.h
 SOURCES += src\*.cpp
 QT += widgets 
+INCLUDEPATH += ../lib/fonts
+RC_ICONS = res/icon.ico

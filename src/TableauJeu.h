@@ -39,7 +39,6 @@ private:
 	int height;
 	int rayon;
 	double lengthWindow;
-	
 
 	Player p1;
 	Player p2;
@@ -47,4 +46,6 @@ private:
 
 	void setupBoard();
 	void enterEvent();
+
+	bool isPlaying;	//Used to disable input when a player win
 };
