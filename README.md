@@ -28,7 +28,7 @@ Need help with `git`? Look at thoses [useful `git` commands](/CONTRIBUTING.md).
 
 ## Abreviation
 
-Some abbreviation are uses in the filename
+Some abbreviation are used in the filename.
 
 - **BG**: Background
 - **FG**: Foreground
